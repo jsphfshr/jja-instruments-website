@@ -1,0 +1,77 @@
+version: "3.8"
+
+services:
+  # Frontend web server (nginx)
+  flow-phantom-web:
+    build: .
+    image: joesinla/flow-phantom-website:latest
+    container_name: flow-phantom-website
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    depends_on:
+      blog-api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 32M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - app-network
+
+  # Blog API backend (Flask)
+  blog-api:
+    build: ./backend
+    image: joesinla/flow-phantom-blog-api:latest
+    container_name: flow-phantom-blog-api
+    restart: unless-stopped
+    expose:
+      - "5000"
+    environment:
+      - DATABASE_PATH=/app/data/blog.db
+      - ADMIN_KEY=${BLOG_ADMIN_KEY:-change-this-in-production}
+      - FLASK_DEBUG=false
+    volumes:
+      - blog-data:/app/data
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  blog-data:
+    driver: local
