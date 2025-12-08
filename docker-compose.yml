@@ -32,13 +32,16 @@ services:
         max-size: "10m"
         max-file: "3"
     networks:
-      - app-network
+      app-network:
+        aliases:
+          - web
 
   # Blog API backend (Flask)
   blog-api:
     build: ./backend
     image: joesinla/flow-phantom-blog-api:latest
     container_name: flow-phantom-blog-api
+    hostname: blog-api
     restart: unless-stopped
     expose:
       - "5000"
@@ -57,16 +60,18 @@ services:
     deploy:
       resources:
         limits:
-          memory: 256M
+          memory: 512M
         reservations:
-          memory: 64M
+          memory: 128M
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
     networks:
-      - app-network
+      app-network:
+        aliases:
+          - blog-api
 
 networks:
   app-network:

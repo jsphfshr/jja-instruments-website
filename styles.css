@@ -29,9 +29,9 @@
   --color-medical-teal: #0096c7;
   --color-medical-green: #00a878;
 
-  /* Typography - Libre Franklin (McKesson style) with i18n font support */
-  --font-display: "Libre Franklin", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: "Libre Franklin", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Typography - with i18n font support */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "DM Sans", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -117,7 +117,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.2;
   color: var(--color-text-dark);
 }
@@ -182,12 +182,8 @@ h2 em {
 .btn-nav {
   padding: 0.625rem 1.25rem;
   background: var(--color-primary);
-  color: white !important;
+  color: white;
   font-size: 0.875rem;
-}
-
-.btn-nav:hover {
-  color: white !important;
 }
 
 .btn.full-width {
@@ -233,7 +229,7 @@ h2 em {
 .logo-text {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .nav-links {
@@ -1609,7 +1605,7 @@ textarea:focus-visible {
 
 /* Hindi (Devanagari script) */
 html[lang="hi"] {
-  --font-body: "Noto Sans Devanagari", "Libre Franklin", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Noto Sans Devanagari", "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html[lang="hi"] body {
@@ -1619,7 +1615,7 @@ html[lang="hi"] body {
 
 /* Chinese Simplified */
 html[lang="zh"] {
-  --font-body: "Noto Sans SC", "Libre Franklin", -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
+  --font-body: "Noto Sans SC", "DM Sans", -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
 }
 
 html[lang="zh"] body {
@@ -1629,7 +1625,7 @@ html[lang="zh"] body {
 
 /* Japanese */
 html[lang="ja"] {
-  --font-body: "Noto Sans JP", "Libre Franklin", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  --font-body: "Noto Sans JP", "DM Sans", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
 }
 
 html[lang="ja"] body {
