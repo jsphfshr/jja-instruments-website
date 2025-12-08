@@ -20,6 +20,8 @@ COPY doppler-phantom.html /usr/share/nginx/html/
 COPY hifu-generator.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY script.js /usr/share/nginx/html/
+COPY robots.txt /usr/share/nginx/html/
+COPY sitemap.xml /usr/share/nginx/html/
 
 # Create a simple health check file
 RUN echo "OK" > /usr/share/nginx/html/health
