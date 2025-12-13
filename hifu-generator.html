@@ -108,8 +108,8 @@
 <body>
     <!-- Header -->
     <header class="header" role="banner">
-        <nav class="nav container" aria-label="Main navigation">
-            <a href="/" class="logo" aria-label="JJ&A Instruments Home">
+        <nav class="nav container" aria-label="Main navigation" data-i18n-aria="aria.mainNav">
+            <a href="/" class="logo" aria-label="JJ&A Instruments Home" data-i18n-aria="aria.home">
                 <svg class="logo-icon" viewBox="0 0 100 100" aria-hidden="true">
                     <rect x="5" y="5" width="90" height="90" rx="20" fill="currentColor"/>
                     <!-- Ultrasound sinewave -->
@@ -124,7 +124,7 @@
                 <span class="logo-text">JJ&A Instruments</span>
             </a>
             
-            <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+            <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" data-i18n-aria="aria.toggleMenu">
                 <span class="hamburger"></span>
             </button>
             
@@ -136,12 +136,12 @@
                         <li><a href="hifu-generator.html" data-i18n="nav.hifu">HIFU RF Power Generator</a></li>
                     </ul>
                 </li>
-                <li><a href="#applications">Applications</a></li>
+                <li><a href="#applications" data-i18n="nav.applications">Applications</a></li>
                 <li><a href="#specifications" data-i18n="nav.specs">Specifications</a></li>
                 <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
                 <li><a href="#contact" class="btn btn-nav" data-i18n="nav.quote">Request Quote</a></li>
                 <li class="lang-selector">
-                    <button class="lang-btn" aria-label="Select language" aria-expanded="false">
+                    <button class="lang-btn" aria-label="Select language" aria-expanded="false" data-i18n-aria="aria.selectLang">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
                             <circle cx="12" cy="12" r="10"/>
                             <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
@@ -233,7 +233,7 @@
                 </div>
             </div>
             <div class="scroll-indicator" aria-hidden="true">
-                <span>Scroll to explore</span>
+                <span data-i18n="home.hero.scroll">Scroll to explore</span>
                 <div class="scroll-arrow"></div>
             </div>
         </section>
@@ -266,7 +266,7 @@
                                 <li>
                                     <span class="process-num">✓</span>
                                     <div>
-                                        <strong data-i18n="hifu.whatis.step2.title">Timing <strong>Timing & Gating Circuits</strong> Gating Circuits</strong>
+                                        <strong data-i18n="hifu.whatis.step2.title">Timing & Gating Circuits</strong>
                                         <p data-i18n="hifu.whatis.step2.desc">Programmable pulse control, &lt;10 μs response</p>
                                     </div>
                                 </li>
@@ -281,7 +281,7 @@
                                     <span class="process-num">✓</span>
                                     <div>
                                         <strong data-i18n="hifu.whatis.step4.title">Safety Systems</strong>
-                                        <p data-i18n="hifu.whatis.step4.desc">VSWR, thermal, arc protection <p>VSWR, thermal, arc protection & interlocks</p> interlocks</p>
+                                        <p data-i18n="hifu.whatis.step4.desc">VSWR, thermal, arc protection & interlocks</p>
                                     </div>
                                 </li>
                                 <li>
@@ -373,7 +373,7 @@
         <section class="applications" id="applications" aria-labelledby="apps-heading">
             <div class="container">
                 <div class="section-header centered">
-                    <span class="section-tag" data-i18n="hifu.apps.tag">Clinical <span class="section-tag">Clinical & Research Applications</span> Research Applications</span>
+                    <span class="section-tag" data-i18n="hifu.apps.tag">Clinical & Research Applications</span>
                     <h2 id="apps-heading" data-i18n="hifu.apps.title">HIFU Applications</h2>
                     <p class="section-desc" data-i18n="hifu.apps.desc">Our RF power generators support the full spectrum of focused ultrasound applications—from life-saving tumor ablation to cutting-edge research.</p>
                 </div>
@@ -388,7 +388,7 @@
                             </div>
                         </div>
                         <div class="app-content">
-                            <h3 data-i18n="hifu.apps.oncology.title">Oncology <h3>Oncology & Tumor Ablation</h3> Tumor Ablation</h3>
+                            <h3 data-i18n="hifu.apps.oncology.title">Oncology & Tumor Ablation</h3>
                             <p data-i18n="hifu.apps.oncology.desc">Non-invasive treatment of solid tumors in prostate, liver, breast, kidney, and bone. HIFU offers an alternative to surgery for patients who are not surgical candidates. The 2024 oncology segment represents 41% of the global HIFU market, with FDA-cleared systems like Focal One® driving adoption.</p>
                         </div>
                     </article>
@@ -402,7 +402,7 @@
                             </div>
                         </div>
                         <div class="app-content">
-                            <h3 data-i18n="hifu.apps.neuro.title">Neurology <h3>Neurology & Brain Therapy</h3> Brain Therapy</h3>
+                            <h3 data-i18n="hifu.apps.neuro.title">Neurology & Brain Therapy</h3>
                             <p data-i18n="hifu.apps.neuro.desc">MRI-guided focused ultrasound for essential tremor, Parkinson's disease tremor, and neuropathic pain. HIFU can create precise lesions in deep brain structures without opening the skull—a breakthrough alternative to invasive neurosurgery. Our MRI-compatible generators enable integration with MRgFUS platforms.</p>
                         </div>
                     </article>
@@ -415,7 +415,7 @@
                             </div>
                         </div>
                         <div class="app-content">
-                            <h3 data-i18n="hifu.apps.aesthetic.title">Aesthetic <h3>Aesthetic & Cosmetic</h3> Cosmetic</h3>
+                            <h3 data-i18n="hifu.apps.aesthetic.title">Aesthetic & Cosmetic</h3>
                             <p data-i18n="hifu.apps.aesthetic.desc">Non-invasive skin tightening, wrinkle reduction, and body contouring. Higher frequency HIFU (3-7 MHz) targets the SMAS layer and subcutaneous fat for cosmetic improvement without surgery. The aesthetic HIFU segment is the fastest-growing market, driven by consumer demand for minimally invasive treatments.</p>
                         </div>
                     </article>
@@ -428,8 +428,8 @@
                             </div>
                         </div>
                         <div class="app-content">
-                            <h3 data-i18n="hifu.apps.rnd.title">Research <h3>Research & Development</h3> Development</h3>
-                            <p data-i18n="hifu.apps.rnd.desc">Flexible configurations for academic and industrial R<p>Flexible configurations for academic and industrial R&D.D. Develop new HIFU applications, validate treatment protocols, and characterize transducer performance. Our generators support the full research cycle from bench experiments to preclinical studies and regulatory submissions.</p>
+                            <h3 data-i18n="hifu.apps.rnd.title">Research & Development</h3>
+                            <p data-i18n="hifu.apps.rnd.desc">Flexible configurations for academic and industrial R&D. Develop new HIFU applications, validate treatment protocols, and characterize transducer performance. Our generators support the full research cycle from bench experiments to preclinical studies and regulatory submissions.</p>
                         </div>
                     </article>
                     <article class="app-card">
@@ -454,7 +454,7 @@
                             </div>
                         </div>
                         <div class="app-content">
-                            <h3 data-i18n="hifu.apps.drug.title">Drug Delivery <h3>Drug Delivery & Sonoporation</h3> Sonoporation</h3>
+                            <h3 data-i18n="hifu.apps.drug.title">Drug Delivery & Sonoporation</h3>
                             <p data-i18n="hifu.apps.drug.desc">Low-intensity pulsed HIFU for enhanced drug delivery, blood-brain barrier opening, and sonodynamic therapy research. Precise pulse control enables investigation of bioeffects beyond thermal ablation.</p>
                         </div>
                     </article>
@@ -724,17 +724,17 @@
                             </div>
                         </div>
                     </div>
-                    <form class="contact-form" action="https://formspree.io/f/xeobnlld" method="POST" aria-label="Contact form" id="contact-form">
+                    <form class="contact-form" action="https://formspree.io/f/xeobnlld" method="POST" aria-label="Contact form" data-i18n-aria="aria.contactForm" id="contact-form">
                         <div class="form-group">
-                            <label for="name">Full Name *</label>
+                            <label for="name" data-i18n="contact.name">Full Name *</label>
                             <input type="text" id="name" name="name" required autocomplete="name">
                         </div>
                         <div class="form-group">
-                            <label for="email">Work Email *</label>
+                            <label for="email" data-i18n="contact.workemail">Work Email *</label>
                             <input type="email" id="email" name="email" required autocomplete="email">
                         </div>
                         <div class="form-group">
-                            <label for="organization">Organization *</label>
+                            <label for="organization" data-i18n="contact.org">Organization *</label>
                             <input type="text" id="organization" name="organization" required autocomplete="organization">
                         </div>
                         <div class="form-group">
@@ -744,17 +744,17 @@
                         <div class="form-group full-width">
                             <label for="interest" data-i18n="contact.interest">I'm interested in:</label>
                             <select id="interest" name="interest">
-                                <option value="hifu-quote">HIFU RF Generator Quote</option>
-                                <option value="hifu-specs">Technical Specifications</option>
-                                <option value="hifu-custom">Custom Configuration</option>
-                                <option value="hifu-oem">OEM Partnership</option>
-                                <option value="hifu-research">Research Application</option>
-                                <option value="hifu-eval">Evaluation Unit</option>
+                                <option value="hifu-quote" data-i18n="contact.option.hifuQuote">HIFU RF Generator Quote</option>
+                                <option value="hifu-specs" data-i18n="contact.option.hifuSpecs">Technical Specifications</option>
+                                <option value="hifu-custom" data-i18n="contact.option.hifuCustom">Custom Configuration</option>
+                                <option value="hifu-oem" data-i18n="contact.option.oem">OEM Partnership</option>
+                                <option value="hifu-research" data-i18n="contact.option.hifuResearch">Research Application</option>
+                                <option value="hifu-eval" data-i18n="contact.option.hifuEval">Evaluation Unit</option>
                             </select>
                         </div>
                         <div class="form-group full-width">
                             <label for="message" data-i18n="contact.message">Project Details</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your HIFU application, target frequency, power requirements, or integration needs..."></textarea>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your HIFU application, target frequency, power requirements, or integration needs..." data-i18n-placeholder="placeholder.messageHifu"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary full-width" data-i18n="contact.submit">Submit Request</button>
                     </form>
@@ -775,21 +775,21 @@
                         </svg>
                         <span class="logo-text">JJ&A Instruments</span>
                     </a>
-                    <p>Precision ultrasound equipment for diagnostic QA and therapeutic applications. Trusted by healthcare providers and researchers worldwide.</p>
+                    <p data-i18n="footer.desc">Precision ultrasound equipment for diagnostic QA and therapeutic applications. Trusted by healthcare providers and researchers worldwide.</p>
                     <div class="certifications">
                         <span class="cert-badge">CE</span>
                         <span class="cert-badge">FDA</span>
                         <span class="cert-badge">ISO</span>
                     </div>
                 </div>
-                <nav class="footer-nav" aria-label="Footer navigation">
+                <nav class="footer-nav" aria-label="Footer navigation" data-i18n-aria="aria.footerNav">
                     <div class="footer-col">
                         <h4 data-i18n="footer.products">Products</h4>
                         <ul>
-                            <li><a href="doppler-phantom.html">Mark V Doppler Phantom</a></li>
-                            <li><a href="hifu-generator.html">HIFU RF Power Generator</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Replacement Parts</a></li>
+                            <li><a href="doppler-phantom.html" data-i18n="nav.doppler">Mark V Doppler Phantom</a></li>
+                            <li><a href="hifu-generator.html" data-i18n="nav.hifu">HIFU RF Power Generator</a></li>
+                            <li><a href="#" data-i18n="footer.accessories">Accessories</a></li>
+                            <li><a href="#" data-i18n="footer.parts">Replacement Parts</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
@@ -813,10 +813,10 @@
                 </nav>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 JJ&A Instruments. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2024 JJ&A Instruments. All rights reserved.</p>
                 <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+                    <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" data-i18n="footer.terms">Terms of Service</a>
                 </div>
             </div>
         </div>

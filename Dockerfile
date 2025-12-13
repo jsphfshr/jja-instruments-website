@@ -1,18 +1,18 @@
-# Flow Phantom Website Docker Image
+# JJ&A Instruments Website Docker Image
 # Lightweight nginx server for static content
 
 FROM nginx:alpine
 
 # Add labels for container identification
-LABEL maintainer="Flow Phantom Technologies"
-LABEL description="Flow Velocity String Phantom Website"
+LABEL maintainer="JJ&A Instruments"
+LABEL description="JJ&A Instruments Website - Precision Ultrasound Equipment"
 LABEL version="1.0"
 
 # Remove default nginx static content
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy nginx configuration template
+COPY nginx.conf /etc/nginx/templates/default.conf.template
 
 # Copy website files
 COPY index.html /usr/share/nginx/html/
@@ -22,12 +22,17 @@ COPY styles.css /usr/share/nginx/html/
 COPY script.js /usr/share/nginx/html/
 COPY robots.txt /usr/share/nginx/html/
 COPY sitemap.xml /usr/share/nginx/html/
+COPY assets/ /usr/share/nginx/html/assets/
 
 # Create a simple health check file
 RUN echo "OK" > /usr/share/nginx/html/health
 
-# Expose port 8080
-EXPOSE 8080
+# Set default environment variables
+ENV BLOG_API_URL=""
+ENV PORT=8080
 
-# nginx runs in foreground by default in this image
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port (Railway uses PORT env variable)
+EXPOSE ${PORT}
+
+# Use envsubst to substitute environment variables in nginx config at runtime
+CMD ["/bin/sh", "-c", "envsubst '${BLOG_API_URL} ${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

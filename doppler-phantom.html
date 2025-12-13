@@ -149,8 +149,8 @@
 <body>
     <!-- Header -->
     <header class="header" role="banner">
-        <nav class="nav container" aria-label="Main navigation">
-            <a href="/" class="logo" aria-label="JJ&A Instruments Home">
+        <nav class="nav container" aria-label="Main navigation" data-i18n-aria="aria.mainNav">
+            <a href="/" class="logo" aria-label="JJ&A Instruments Home" data-i18n-aria="aria.home">
                 <svg class="logo-icon" viewBox="0 0 100 100" aria-hidden="true">
                     <rect x="5" y="5" width="90" height="90" rx="20" fill="currentColor"/>
                     <!-- Ultrasound sinewave -->
@@ -165,7 +165,7 @@
                 <span class="logo-text">JJ&A Instruments</span>
             </a>
             
-            <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+            <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" data-i18n-aria="aria.toggleMenu">
                 <span class="hamburger"></span>
             </button>
             
@@ -177,13 +177,13 @@
                         <li><a href="hifu-generator.html" data-i18n="nav.hifu">HIFU RF Power Generator</a></li>
                     </ul>
                 </li>
-                <li><a href="#qa-compliance" data-i18n="nav.compliance">QA <li><a href="#qa-compliance">QA & Compliance</a></li> Compliance</a></li>
-                <li><a href="#services">Calibration Services</a></li>
-                <li><a href="#applications">Applications</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="#qa-compliance" data-i18n="nav.compliance">QA & Compliance</a></li>
+                <li><a href="#services" data-i18n="nav.calibration">Calibration Services</a></li>
+                <li><a href="#applications" data-i18n="nav.applications">Applications</a></li>
+                <li><a href="#blog" data-i18n="nav.blog">Blog</a></li>
                 <li><a href="#contact" class="btn btn-nav" data-i18n="nav.quote">Request Quote</a></li>
                 <li class="lang-selector">
-                    <button class="lang-btn" aria-label="Select language" aria-expanded="false">
+                    <button class="lang-btn" aria-label="Select language" aria-expanded="false" data-i18n-aria="aria.selectLang">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
                             <circle cx="12" cy="12" r="10"/>
                             <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
@@ -235,36 +235,23 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="phantom-illustration">
-                        <div class="phantom-body">
-                            <div class="phantom-tank">
-                                <div class="water-level"></div>
-                                <div class="string-path">
-                                    <svg viewBox="0 0 200 100" preserveAspectRatio="none">
-                                        <path class="string-line" d="M0 50 Q50 20 100 50 Q150 80 200 50" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    </svg>
-                                </div>
-                                <div class="pulley pulley-left"></div>
-                                <div class="pulley pulley-right"></div>
-                            </div>
-                            <div class="motor-unit">
-                                <div class="motor-body"></div>
-                                <div class="motor-dial"></div>
-                            </div>
-                            <div class="display-unit">
-                                <span class="velocity-reading">50.0</span>
-                                <span class="velocity-unit">cm/s</span>
-                            </div>
+                    <div class="product-image-gallery">
+                        <div class="main-image">
+                            <img src="assets/images/MK5-front.jpg" alt="Mark V Doppler Phantom - Front View" id="main-product-image">
                         </div>
-                        <div class="probe-indicator">
-                            <div class="probe-beam"></div>
-                            <span>Blood Flow Velocity Measurement</span>
+                        <div class="image-thumbnails">
+                            <button class="thumbnail active" onclick="changeImage('assets/images/MK5-front.jpg', this)">
+                                <img src="assets/images/MK5-front.jpg" alt="Front View">
+                            </button>
+                            <button class="thumbnail" onclick="changeImage('assets/images/MK5-rear.jpg', this)">
+                                <img src="assets/images/MK5-rear.jpg" alt="Rear View">
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="scroll-indicator" aria-hidden="true">
-                <span>Scroll to explore</span>
+                <span data-i18n="home.hero.scroll">Scroll to explore</span>
                 <div class="scroll-arrow"></div>
             </div>
         </section>
@@ -311,7 +298,7 @@
                                 <li>
                                     <span class="process-num">04</span>
                                     <div>
-                                        <strong data-i18n="doppler.whatis.step4.title">Documentation <strong>Documentation & Compliance</strong> Compliance</strong>
+                                        <strong data-i18n="doppler.whatis.step4.title">Documentation & Compliance</strong>
                                         <p data-i18n="doppler.whatis.step4.desc">Maintain records for ACR, IAC, ICAVL, Joint Commission audits</p>
                                     </div>
                                 </li>
@@ -398,7 +385,7 @@
                     <div class="specs-info">
                         <div class="section-header">
                             <span class="section-tag" data-i18n="doppler.compliance.tag">Regulatory Compliance</span>
-                            <h2 id="compliance-heading" data-i18n="doppler.compliance.title">Ultrasound Compliance <h2 id="compliance-heading">Ultrasound Compliance & Accreditation</h2> Accreditation</h2>
+                            <h2 id="compliance-heading" data-i18n="doppler.compliance.title">Ultrasound Compliance & Accreditation</h2>
                             <p class="section-desc" data-i18n="doppler.compliance.desc">Meet the quality assurance requirements of major accrediting bodies and regulatory agencies with documented Doppler velocity calibration.</p>
                         </div>
                         <div class="specs-table">
@@ -408,7 +395,7 @@
                             </div>
                             <div class="spec-row">
                                 <span class="spec-label">IAC (Intersocietal Accreditation)</span>
-                                <span class="spec-value" data-i18n="doppler.compliance.row2">Echo <span class="spec-value">Echo & Vascular standards</span> Vascular standards</span>
+                                <span class="spec-value" data-i18n="doppler.compliance.row2">Echo & Vascular standards</span>
                             </div>
                             <div class="spec-row">
                                 <span class="spec-label">ICAVL (Vascular Lab Accreditation)</span>
@@ -547,7 +534,7 @@
             <div class="container">
                 <div class="section-header centered">
                     <span class="section-tag" data-i18n="doppler.research.tag">Beyond Clinical</span>
-                    <h2 id="research-heading" data-i18n="doppler.research.title">Production <h2 id="research-heading">Production & Research Applications</h2> Research Applications</h2>
+                    <h2 id="research-heading" data-i18n="doppler.research.title">Production & Research Applications</h2>
                     <p class="section-desc" data-i18n="doppler.research.desc">Our doppler phantoms serve critical roles in ultrasound manufacturing quality control, academic research, and medical device development.</p>
                 </div>
                 <div class="apps-grid">
@@ -573,7 +560,7 @@
                             </div>
                         </div>
                         <div class="app-content">
-                            <h3 data-i18n="doppler.research.rnd.title">R<h3>R&D and Product Development</h3>D and Product Development</h3>
+                            <h3 data-i18n="doppler.research.rnd.title">R&D and Product Development</h3>
                             <p data-i18n="doppler.research.rnd.desc">Develop and validate new Doppler algorithms, signal processing techniques, and imaging modalities. Our phantoms provide the consistent, repeatable velocity references needed for quantitative research and regulatory submissions.</p>
                         </div>
                     </article>
@@ -746,7 +733,7 @@
                             </div>
                         </div>
                         <div class="app-content">
-                            <h3 data-i18n="doppler.specs.standards.title">Compliance <h3>Compliance & Standards</h3> Standards</h3>
+                            <h3 data-i18n="doppler.specs.standards.title">Compliance & Standards</h3>
                             <p data-i18n="doppler.specs.standards.desc"><strong>Standards:</strong> IEC 62359, FDA QSR<br>
                             <strong>Power:</strong> 100-240V AC, 50/60Hz<br>
                             <strong>Certifications:</strong> CE marked<br>
@@ -761,15 +748,15 @@
         <section class="blog" id="blog" aria-labelledby="blog-heading">
             <div class="container">
                 <div class="section-header centered">
-                    <span class="section-tag">Insights & Updates</span>
-                    <h2 id="blog-heading">Blog & Resources</h2>
-                    <p class="section-desc">Expert articles on ultrasound quality assurance, compliance updates, and industry best practices.</p>
+                    <span class="section-tag" data-i18n="blog.tag">Insights & Updates</span>
+                    <h2 id="blog-heading" data-i18n="blog.title">Blog & Resources</h2>
+                    <p class="section-desc" data-i18n="blog.desc">Expert articles on ultrasound quality assurance, compliance updates, and industry best practices.</p>
                 </div>
                 
                 <!-- Blog List View -->
                 <div id="blog-list-view">
                     <div class="blog-filters">
-                        <button class="blog-filter-btn active" data-category="all">All Posts</button>
+                        <button class="blog-filter-btn active" data-category="all" data-i18n="blog.allposts">All Posts</button>
                         <div id="blog-category-filters"></div>
                     </div>
                     
@@ -777,7 +764,7 @@
                         <!-- Blog posts loaded dynamically -->
                         <div class="blog-loading">
                             <div class="loading-spinner"></div>
-                            <p>Loading articles...</p>
+                            <p data-i18n="blog.loading">Loading articles...</p>
                         </div>
                     </div>
                     
@@ -790,7 +777,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
-                        Back to Articles
+                        <span data-i18n="blog.back">Back to Articles</span>
                     </button>
                     
                     <article class="blog-post-full">
@@ -820,33 +807,33 @@
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
                                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                                 </svg>
-                                Comments <span id="comment-count">(0)</span>
+                                <span data-i18n="blog.comments">Comments</span> <span id="comment-count">(0)</span>
                             </h3>
                             
                             <!-- Comment Form -->
                             <form class="comment-form" id="comment-form">
-                                <h4>Leave a Comment</h4>
+                                <h4 data-i18n="blog.leavecomment">Leave a Comment</h4>
                                 <div class="comment-form-grid">
                                     <div class="form-group">
-                                        <label for="comment-name">Name *</label>
+                                        <label for="comment-name" data-i18n="blog.name">Name *</label>
                                         <input type="text" id="comment-name" name="author_name" required maxlength="100">
                                     </div>
                                     <div class="form-group">
-                                        <label for="comment-email">Email * (not published)</label>
+                                        <label for="comment-email" data-i18n="blog.email">Email * (not published)</label>
                                         <input type="email" id="comment-email" name="author_email" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="comment-content">Comment *</label>
-                                    <textarea id="comment-content" name="content" rows="4" required maxlength="5000" placeholder="Share your thoughts..."></textarea>
+                                    <label for="comment-content" data-i18n="blog.comment">Comment *</label>
+                                    <textarea id="comment-content" name="content" rows="4" required maxlength="5000" placeholder="Share your thoughts..." data-i18n-placeholder="placeholder.comment"></textarea>
                                 </div>
                                 <input type="hidden" id="comment-parent-id" name="parent_id" value="">
                                 <div class="comment-form-actions">
                                     <span class="replying-to hidden" id="replying-to">
-                                        Replying to <span id="reply-to-name"></span>
-                                        <button type="button" class="cancel-reply" id="cancel-reply">Cancel</button>
+                                        <span data-i18n="blog.replyingto">Replying to</span> <span id="reply-to-name"></span>
+                                        <button type="button" class="cancel-reply" id="cancel-reply" data-i18n="blog.cancel">Cancel</button>
                                     </span>
-                                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                                    <button type="submit" class="btn btn-primary" data-i18n="blog.postcomment">Post Comment</button>
                                 </div>
                             </form>
                             
@@ -952,7 +939,7 @@
                             </div>
                         </div>
                     </div>
-                    <form class="contact-form" action="https://formspree.io/f/xeobnlld" method="POST" aria-label="Contact form" id="contact-form">
+                    <form class="contact-form" action="https://formspree.io/f/xeobnlld" method="POST" aria-label="Contact form" data-i18n-aria="aria.contactForm" id="contact-form">
                         <div class="form-group">
                             <label for="name" data-i18n="contact.name">Full Name *</label>
                             <input type="text" id="name" name="name" required autocomplete="name">
@@ -972,17 +959,17 @@
                         <div class="form-group full-width">
                             <label for="interest" data-i18n="contact.interest">I'm interested in:</label>
                             <select id="interest" name="interest">
-                                <option value="phantom-quote">Mark V Doppler Phantom Quote</option>
-                                <option value="calibration-service">Ultrasound Calibration Services</option>
-                                <option value="qa-compliance">QA & Compliance Support</option>
-                                <option value="oem-research">OEM / Research Applications</option>
-                                <option value="recertification">Phantom Recertification</option>
-                                <option value="info">General Information</option>
+                                <option value="phantom-quote" data-i18n="contact.option.phantomQuote">Mark V Doppler Phantom Quote</option>
+                                <option value="calibration-service" data-i18n="contact.option.calibrationService">Ultrasound Calibration Services</option>
+                                <option value="qa-compliance" data-i18n="contact.option.qaCompliance">QA & Compliance Support</option>
+                                <option value="oem-research" data-i18n="contact.option.oemResearch">OEM / Research Applications</option>
+                                <option value="recertification" data-i18n="contact.option.recertification">Phantom Recertification</option>
+                                <option value="info" data-i18n="contact.option.general">General Information</option>
                             </select>
                         </div>
                         <div class="form-group full-width">
                             <label for="message" data-i18n="contact.message">Message</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your ultrasound QA needs, accreditation requirements, or research applications..."></textarea>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your ultrasound QA needs, accreditation requirements, or research applications..." data-i18n-placeholder="placeholder.messageDoppler"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary full-width" data-i18n="contact.submit">Submit Request</button>
                     </form>
@@ -1003,49 +990,49 @@
                         </svg>
                         <span class="logo-text">JJ&A Instruments</span>
                     </a>
-                    <p>Precision doppler phantoms and ultrasound calibration services for medical ultrasound quality assurance, regulatory compliance, and research applications.</p>
+                    <p data-i18n="footer.descDoppler">Precision doppler phantoms and ultrasound calibration services for medical ultrasound quality assurance, regulatory compliance, and research applications.</p>
                     <div class="certifications">
                         <span class="cert-badge">CE</span>
                         <span class="cert-badge">NIST</span>
                         <span class="cert-badge">ISO</span>
                     </div>
                 </div>
-                <nav class="footer-nav" aria-label="Footer navigation">
+                <nav class="footer-nav" aria-label="Footer navigation" data-i18n-aria="aria.footerNav">
                     <div class="footer-col">
                         <h4 data-i18n="footer.products">Products</h4>
                         <ul>
-                            <li><a href="doppler-phantom.html">Mark V Doppler Phantom</a></li>
-                            <li><a href="hifu-generator.html">HIFU RF Power Generator</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Replacement Parts</a></li>
+                            <li><a href="doppler-phantom.html" data-i18n="nav.doppler">Mark V Doppler Phantom</a></li>
+                            <li><a href="hifu-generator.html" data-i18n="nav.hifu">HIFU RF Power Generator</a></li>
+                            <li><a href="#" data-i18n="footer.accessories">Accessories</a></li>
+                            <li><a href="#" data-i18n="footer.parts">Replacement Parts</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4 data-i18n="footer.services">Services</h4>
                         <ul>
                             <li><a href="#services" data-i18n="footer.calibration">Ultrasound Calibration</a></li>
-                            <li><a href="#qa-compliance" data-i18n="nav.compliance">QA <li><a href="#qa-compliance">QA & Compliance</a></li> Compliance</a></li>
+                            <li><a href="#qa-compliance" data-i18n="nav.compliance">QA & Compliance</a></li>
                             <li><a href="#services" data-i18n="footer.recertification">Phantom Recertification</a></li>
-                            <li><a href="#research" data-i18n="footer.oem">OEM <li><a href="#research">OEM & Research</a></li> Research</a></li>
+                            <li><a href="#research" data-i18n="footer.oemResearch">OEM & Research</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4 data-i18n="footer.resources">Resources</h4>
                         <ul>
-                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#blog" data-i18n="nav.blog">Blog</a></li>
                             <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
                             <li><a href="#" data-i18n="footer.docs">Technical Documents</a></li>
                             <li><a href="#" data-i18n="footer.protocols">QA Protocols</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 JJ&A Instruments. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2024 JJ&A Instruments. All rights reserved.</p>
                 <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+                    <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" data-i18n="footer.terms">Terms of Service</a>
                 </div>
             </div>
         </div>

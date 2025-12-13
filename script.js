@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Animate elements on scroll
   const observerOptions = {
     root: null,
-    rootMargin: "0px",
-    threshold: 0.1,
+    rootMargin: "100px",
+    threshold: 0.05,
   };
 
   const fadeInObserver = new IntersectionObserver((entries) => {
@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const animateElements = document.querySelectorAll(".feature-card, .app-card, .testimonial-card, .spec-row");
   animateElements.forEach((el, index) => {
     el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
-    el.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+    el.style.transform = "translateY(12px)";
+    el.style.transition = "opacity 0.3s ease-out, transform 0.3s ease-out";
     fadeInObserver.observe(el);
   });
 
@@ -246,7 +246,7 @@ if ("IntersectionObserver" in window) {
         imageObserver.unobserve(img);
       }
     });
-  });
+  }, { rootMargin: "200px" });
 
   document.querySelectorAll("img[data-src]").forEach((img) => {
     imageObserver.observe(img);
@@ -693,6 +693,50 @@ const translations = {
     "footer.desc": "Precision ultrasound equipment for diagnostic QA and therapeutic applications. Trusted by healthcare providers and researchers worldwide.",
     "footer.accessories": "Accessories",
     "footer.parts": "Replacement Parts",
+    "footer.descDoppler": "Precision doppler phantoms and ultrasound calibration services for medical ultrasound quality assurance, regulatory compliance, and research applications.",
+    "footer.oemResearch": "OEM & Research",
+
+    // Navigation - Additional
+    "nav.calibration": "Calibration Services",
+    "nav.applications": "Applications",
+
+    // Aria Labels for Accessibility
+    "aria.mainNav": "Main navigation",
+    "aria.home": "JJ&A Instruments Home",
+    "aria.toggleMenu": "Toggle menu",
+    "aria.selectLang": "Select language",
+    "aria.contactForm": "Contact form",
+    "aria.footerNav": "Footer navigation",
+
+    // Placeholders
+    "placeholder.comment": "Share your thoughts...",
+    "placeholder.message": "Tell us about your project, requirements, or questions...",
+    "placeholder.messageDoppler": "Tell us about your ultrasound QA needs, accreditation requirements, or research applications...",
+
+    // Contact Form Options - Index page
+    "contact.option.doppler": "Mark V Doppler Phantom",
+    "contact.option.hifu": "HIFU RF Power Generator",
+    "contact.option.calibration": "Calibration Services",
+    "contact.option.oem": "OEM Partnership",
+    "contact.option.custom": "Custom Engineering",
+    "contact.option.general": "General Inquiry",
+
+    // Contact Form Options - Doppler page
+    "contact.option.phantomQuote": "Mark V Doppler Phantom Quote",
+    "contact.option.calibrationService": "Ultrasound Calibration Services",
+    "contact.option.qaCompliance": "QA & Compliance Support",
+    "contact.option.oemResearch": "OEM / Research Applications",
+    "contact.option.recertification": "Phantom Recertification",
+
+    // Contact Form Options - HIFU page
+    "contact.option.hifuQuote": "HIFU RF Generator Quote",
+    "contact.option.hifuSpecs": "Technical Specifications",
+    "contact.option.hifuCustom": "Custom Configuration",
+    "contact.option.hifuResearch": "Research Application",
+    "contact.option.hifuEval": "Evaluation Unit",
+
+    // Placeholder - HIFU page
+    "placeholder.messageHifu": "Tell us about your HIFU application, target frequency, power requirements, or integration needs...",
   },
 
   zh: {
@@ -1122,6 +1166,50 @@ const translations = {
     "footer.desc": "用于诊断QA和治疗应用的精密超声设备。受到全球医疗保健提供者和研究人员的信赖。",
     "footer.accessories": "配件",
     "footer.parts": "替换零件",
+    "footer.descDoppler": "用于医学超声质量保证、法规合规和研究应用的精密多普勒模体和超声校准服务。",
+    "footer.oemResearch": "OEM与研究",
+
+    // Navigation - Additional
+    "nav.calibration": "校准服务",
+    "nav.applications": "应用",
+
+    // Aria Labels for Accessibility
+    "aria.mainNav": "主导航",
+    "aria.home": "JJ&A Instruments 首页",
+    "aria.toggleMenu": "切换菜单",
+    "aria.selectLang": "选择语言",
+    "aria.contactForm": "联系表单",
+    "aria.footerNav": "页脚导航",
+
+    // Placeholders
+    "placeholder.comment": "分享您的想法...",
+    "placeholder.message": "告诉我们您的项目、需求或问题...",
+    "placeholder.messageDoppler": "告诉我们您的超声QA需求、认证要求或研究应用...",
+
+    // Contact Form Options - Index page
+    "contact.option.doppler": "Mark V 多普勒模体",
+    "contact.option.hifu": "HIFU射频功率发生器",
+    "contact.option.calibration": "校准服务",
+    "contact.option.oem": "OEM合作",
+    "contact.option.custom": "定制工程",
+    "contact.option.general": "一般咨询",
+
+    // Contact Form Options - Doppler page
+    "contact.option.phantomQuote": "Mark V 多普勒模体报价",
+    "contact.option.calibrationService": "超声校准服务",
+    "contact.option.qaCompliance": "QA与合规支持",
+    "contact.option.oemResearch": "OEM/研究应用",
+    "contact.option.recertification": "模体再认证",
+
+    // Contact Form Options - HIFU page
+    "contact.option.hifuQuote": "HIFU射频发生器报价",
+    "contact.option.hifuSpecs": "技术规格",
+    "contact.option.hifuCustom": "定制配置",
+    "contact.option.hifuResearch": "研究应用",
+    "contact.option.hifuEval": "评估样机",
+
+    // Placeholder - HIFU page
+    "placeholder.messageHifu": "告诉我们您的HIFU应用、目标频率、功率要求或集成需求...",
   },
 
   ja: {
@@ -1551,6 +1639,50 @@ const translations = {
     "footer.desc": "診断QAおよび治療用アプリケーション向けの精密超音波機器。世界中の医療従事者や研究者から信頼されています。",
     "footer.accessories": "アクセサリー",
     "footer.parts": "交換部品",
+    "footer.descDoppler": "医療用超音波品質保証、規制遵守、研究用途向けの精密ドップラーファントムと超音波校正サービス。",
+    "footer.oemResearch": "OEM＆研究",
+
+    // Navigation - Additional
+    "nav.calibration": "校正サービス",
+    "nav.applications": "アプリケーション",
+
+    // Aria Labels for Accessibility
+    "aria.mainNav": "メインナビゲーション",
+    "aria.home": "JJ&A Instruments ホーム",
+    "aria.toggleMenu": "メニュー切替",
+    "aria.selectLang": "言語選択",
+    "aria.contactForm": "お問い合わせフォーム",
+    "aria.footerNav": "フッターナビゲーション",
+
+    // Placeholders
+    "placeholder.comment": "ご意見をお聞かせください...",
+    "placeholder.message": "プロジェクト、要件、ご質問についてお聞かせください...",
+    "placeholder.messageDoppler": "超音波QAニーズ、認定要件、研究用途についてお聞かせください...",
+
+    // Contact Form Options - Index page
+    "contact.option.doppler": "Mark V ドップラーファントム",
+    "contact.option.hifu": "HIFU RF パワージェネレーター",
+    "contact.option.calibration": "校正サービス",
+    "contact.option.oem": "OEMパートナーシップ",
+    "contact.option.custom": "カスタムエンジニアリング",
+    "contact.option.general": "一般的なお問い合わせ",
+
+    // Contact Form Options - Doppler page
+    "contact.option.phantomQuote": "Mark V ドップラーファントム見積もり",
+    "contact.option.calibrationService": "超音波校正サービス",
+    "contact.option.qaCompliance": "QA＆コンプライアンスサポート",
+    "contact.option.oemResearch": "OEM/研究用途",
+    "contact.option.recertification": "ファントム再認証",
+
+    // Contact Form Options - HIFU page
+    "contact.option.hifuQuote": "HIFU RFジェネレーター見積もり",
+    "contact.option.hifuSpecs": "技術仕様",
+    "contact.option.hifuCustom": "カスタム構成",
+    "contact.option.hifuResearch": "研究用途",
+    "contact.option.hifuEval": "評価ユニット",
+
+    // Placeholder - HIFU page
+    "placeholder.messageHifu": "HIFUアプリケーション、目標周波数、電力要件、または統合ニーズについてお聞かせください...",
   },
 
   hi: {
@@ -1980,6 +2112,50 @@ const translations = {
     "footer.desc": "डायग्नोस्टिक QA और चिकित्सीय अनुप्रयोगों के लिए सटीक अल्ट्रासाउंड उपकरण। विश्व भर के स्वास्थ्य सेवा प्रदाताओं और शोधकर्ताओं द्वारा विश्वसनीय।",
     "footer.accessories": "सहायक उपकरण",
     "footer.parts": "प्रतिस्थापन पुर्जे",
+    "footer.descDoppler": "मेडिकल अल्ट्रासाउंड गुणवत्ता आश्वासन, नियामक अनुपालन और अनुसंधान अनुप्रयोगों के लिए सटीक डॉप्लर फैंटम और अल्ट्रासाउंड कैलिब्रेशन सेवाएं।",
+    "footer.oemResearch": "OEM और अनुसंधान",
+
+    // Navigation - Additional
+    "nav.calibration": "कैलिब्रेशन सेवाएं",
+    "nav.applications": "अनुप्रयोग",
+
+    // Aria Labels for Accessibility
+    "aria.mainNav": "मुख्य नेविगेशन",
+    "aria.home": "JJ&A Instruments होम",
+    "aria.toggleMenu": "मेनू टॉगल करें",
+    "aria.selectLang": "भाषा चुनें",
+    "aria.contactForm": "संपर्क फॉर्म",
+    "aria.footerNav": "फुटर नेविगेशन",
+
+    // Placeholders
+    "placeholder.comment": "अपने विचार साझा करें...",
+    "placeholder.message": "हमें अपनी परियोजना, आवश्यकताओं या प्रश्नों के बारे में बताएं...",
+    "placeholder.messageDoppler": "हमें अपनी अल्ट्रासाउंड QA आवश्यकताओं, प्रत्यायन आवश्यकताओं या अनुसंधान अनुप्रयोगों के बारे में बताएं...",
+
+    // Contact Form Options - Index page
+    "contact.option.doppler": "Mark V डॉप्लर फैंटम",
+    "contact.option.hifu": "HIFU RF पावर जनरेटर",
+    "contact.option.calibration": "कैलिब्रेशन सेवाएं",
+    "contact.option.oem": "OEM साझेदारी",
+    "contact.option.custom": "कस्टम इंजीनियरिंग",
+    "contact.option.general": "सामान्य पूछताछ",
+
+    // Contact Form Options - Doppler page
+    "contact.option.phantomQuote": "Mark V डॉप्लर फैंटम कोट",
+    "contact.option.calibrationService": "अल्ट्रासाउंड कैलिब्रेशन सेवाएं",
+    "contact.option.qaCompliance": "QA और अनुपालन समर्थन",
+    "contact.option.oemResearch": "OEM / अनुसंधान अनुप्रयोग",
+    "contact.option.recertification": "फैंटम पुन: प्रमाणन",
+
+    // Contact Form Options - HIFU page
+    "contact.option.hifuQuote": "HIFU RF जनरेटर कोट",
+    "contact.option.hifuSpecs": "तकनीकी विनिर्देश",
+    "contact.option.hifuCustom": "कस्टम कॉन्फ़िगरेशन",
+    "contact.option.hifuResearch": "अनुसंधान अनुप्रयोग",
+    "contact.option.hifuEval": "मूल्यांकन इकाई",
+
+    // Placeholder - HIFU page
+    "placeholder.messageHifu": "हमें अपने HIFU अनुप्रयोग, लक्ष्य आवृत्ति, पावर आवश्यकताओं या एकीकरण आवश्यकताओं के बारे में बताएं...",
   },
 };
 
@@ -2046,6 +2222,41 @@ class I18n {
     this.setupLanguageSelector();
     this.applyTranslations();
     this.updateDocumentLang();
+
+    // Auto-detect country if no preference stored
+    if (!this.getStoredLanguage()) {
+      this.detectCountry().then(lang => {
+        if (lang && lang !== this.currentLang && translations[lang]) {
+          console.log("Auto-switching to country language:", lang);
+          this.changeLanguage(lang);
+        }
+      });
+    }
+  }
+
+  async detectCountry() {
+    try {
+      const cachedGeo = sessionStorage.getItem("geo_language");
+      if (cachedGeo) return cachedGeo;
+
+      const response = await fetch("https://ipapi.co/json/");
+      if (!response.ok) return null;
+      const data = await response.json();
+      const country = data.country_code;
+
+      let lang = null;
+      if (country === "CN") lang = "zh";
+      else if (country === "JP") lang = "ja";
+      else if (country === "IN") lang = "hi";
+
+      if (lang) {
+        sessionStorage.setItem("geo_language", lang);
+        return lang;
+      }
+    } catch (e) {
+      // Fail silently
+    }
+    return null;
   }
 
   // Setup language selector functionality
@@ -2142,6 +2353,26 @@ class I18n {
         } else {
           el.textContent = translation;
         }
+      }
+    });
+
+    // Apply aria-label translations
+    const ariaElements = document.querySelectorAll("[data-i18n-aria]");
+    ariaElements.forEach((el) => {
+      const key = el.dataset.i18nAria;
+      const translation = translations[this.currentLang]?.[key];
+      if (translation) {
+        el.setAttribute("aria-label", translation);
+      }
+    });
+
+    // Apply placeholder translations
+    const placeholderElements = document.querySelectorAll("[data-i18n-placeholder]");
+    placeholderElements.forEach((el) => {
+      const key = el.dataset.i18nPlaceholder;
+      const translation = translations[this.currentLang]?.[key];
+      if (translation) {
+        el.setAttribute("placeholder", translation);
       }
     });
 
@@ -2264,6 +2495,13 @@ class Blog {
         ...options,
       });
 
+      // Check content type to ensure we got JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        console.error("API returned non-JSON response:", contentType);
+        throw new Error("API returned invalid response format");
+      }
+
       if (!response.ok) {
         const error = await response.json().catch(() => ({error: "Request failed"}));
         throw new Error(error.error || "Request failed");
@@ -2319,9 +2557,16 @@ class Blog {
       }
 
       const data = await this.fetchAPI(endpoint);
-      this.renderPosts(data.posts);
-      this.renderPagination(data.pagination);
+
+      // Handle fallback response when blog service is unavailable
+      if (data.error) {
+        console.warn("Blog API warning:", data.error);
+      }
+
+      this.renderPosts(data.posts || []);
+      this.renderPagination(data.pagination || {page: 1, per_page: 6, total: 0, pages: 0});
     } catch (error) {
+      console.error("Failed to load blog posts:", error);
       this.showError("Failed to load blog posts. Please try again later.");
     }
   }
@@ -2664,3 +2909,18 @@ class Blog {
 document.addEventListener("DOMContentLoaded", () => {
   window.blog = new Blog();
 });
+
+// Product Image Gallery
+function changeImage(src, element) {
+  const mainImage = document.getElementById('main-product-image');
+  if (mainImage) {
+    mainImage.src = src;
+    mainImage.alt = element.querySelector('img').alt;
+  }
+  
+  // Update active thumbnail
+  document.querySelectorAll('.product-image-gallery .thumbnail').forEach(thumb => {
+    thumb.classList.remove('active');
+  });
+  element.classList.add('active');
+}
