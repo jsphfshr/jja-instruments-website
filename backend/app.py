@@ -187,6 +187,97 @@ def init_db():
                 'author': 'Dr. James Wilson',
                 'category': 'Technology',
                 'tags': 'Phantoms,Technology,QA,Equipment'
+            },
+            {
+                'title': 'Introduction to High-Intensity Focused Ultrasound (HIFU) Technology',
+                'slug': 'introduction-to-hifu-technology',
+                'excerpt': 'Explore the principles, applications, and quality assurance requirements for High-Intensity Focused Ultrasound systems.',
+                'content': '''<p>High-Intensity Focused Ultrasound (HIFU) represents one of the most significant advances in non-invasive therapeutic ultrasound technology. By focusing acoustic energy to create precise thermal ablation, HIFU enables treatment of tumors and other conditions without surgical incisions.</p>
+
+<h3>How HIFU Works</h3>
+<p>HIFU systems concentrate ultrasound waves at a focal point within the body, generating temperatures exceeding 60°C. This rapid heating causes coagulative necrosis of targeted tissue while sparing surrounding structures. The precision of HIFU depends critically on accurate acoustic output and focal positioning.</p>
+
+<h3>Clinical Applications</h3>
+<ul>
+<li><strong>Oncology:</strong> Treatment of prostate, liver, kidney, breast, and pancreatic tumors</li>
+<li><strong>Urology:</strong> Benign prostatic hyperplasia (BPH) treatment</li>
+<li><strong>Gynecology:</strong> Uterine fibroid ablation</li>
+<li><strong>Neurology:</strong> Essential tremor and Parkinson's disease treatment</li>
+<li><strong>Aesthetics:</strong> Non-invasive body contouring and skin tightening</li>
+</ul>
+
+<h3>Quality Assurance Considerations</h3>
+<p>HIFU systems require rigorous QA protocols to ensure patient safety and treatment efficacy:</p>
+<ul>
+<li><strong>Acoustic Power Calibration:</strong> Regular verification of output power levels</li>
+<li><strong>Focal Accuracy Testing:</strong> Confirming the focal point aligns with imaging guidance</li>
+<li><strong>Thermal Dosimetry:</strong> Validating temperature elevation at the target</li>
+<li><strong>Imaging Integration:</strong> Ensuring MRI or ultrasound guidance accuracy</li>
+</ul>
+
+<h3>The Role of HIFU Generators</h3>
+<p>The HIFU generator is the heart of any therapeutic ultrasound system. It must deliver precise, stable power output across a range of frequencies and duty cycles. JJ&A Instruments offers HIFU generator solutions designed for both clinical applications and research environments, with built-in calibration verification capabilities.</p>
+
+<h3>Future Directions</h3>
+<p>HIFU technology continues to evolve with developments in real-time MR thermometry, histotripsy (mechanical tissue fractionation), and combination therapies. As applications expand, robust quality assurance becomes increasingly critical for safe and effective treatment delivery.</p>''',
+                'author': 'Dr. Elena Rodriguez, PhD',
+                'category': 'Technology',
+                'tags': 'HIFU,Therapeutic Ultrasound,Technology,Research'
+            },
+            {
+                'title': 'Blood Flow Velocity Calibration: Principles and Best Practices',
+                'slug': 'blood-flow-velocity-calibration',
+                'excerpt': 'A technical guide to understanding and implementing accurate blood flow velocity calibration for Doppler ultrasound systems.',
+                'content': '''<p>Accurate blood flow velocity measurement is fundamental to vascular diagnostics. From detecting carotid stenosis to evaluating cardiac function, clinical decisions depend on precise Doppler velocity readings. This article examines the principles of velocity calibration and best practices for ensuring measurement accuracy.</p>
+
+<h3>The Physics of Doppler Velocity Measurement</h3>
+<p>Doppler ultrasound calculates blood flow velocity using the Doppler equation:</p>
+<p><strong>V = (Fd × c) / (2 × Ft × cos θ)</strong></p>
+<p>Where V is velocity, Fd is the Doppler frequency shift, c is the speed of sound, Ft is the transmitted frequency, and θ is the Doppler angle. Errors in any of these parameters affect velocity accuracy.</p>
+
+<h3>Common Sources of Velocity Error</h3>
+<ul>
+<li><strong>Angle Correction Errors:</strong> The cosine term makes measurements highly sensitive to angle estimation, especially above 60°</li>
+<li><strong>Speed of Sound Assumptions:</strong> Systems assume 1540 m/s, but tissue variations can introduce 2-5% errors</li>
+<li><strong>Frequency Calibration Drift:</strong> Electronic components can drift over time</li>
+<li><strong>Spectral Broadening:</strong> Finite sample volume size causes velocity spread in the spectrum</li>
+<li><strong>Wall Filter Settings:</strong> Inappropriate filters can exclude low-velocity components</li>
+</ul>
+
+<h3>Calibration Methods</h3>
+<h4>String Phantom Method</h4>
+<p>String phantoms provide the gold standard for velocity calibration. A precision motor drives a filament at known velocities (typically 10-200 cm/s), allowing direct comparison with displayed values. The JJ&A Mark V achieves ±1% velocity accuracy, traceable to national standards.</p>
+
+<h4>Testing Protocol</h4>
+<ol>
+<li>Set phantom to multiple velocities spanning clinical range (e.g., 25, 50, 100, 150 cm/s)</li>
+<li>Test at multiple Doppler angles (30°, 45°, 60°) to verify angle correction</li>
+<li>Compare displayed velocity to known phantom velocity</li>
+<li>Document results and calculate percentage error</li>
+<li>Acceptable tolerance: typically ±5% for clinical systems</li>
+</ol>
+
+<h3>Accreditation Requirements</h3>
+<p>Major accrediting bodies require documented velocity calibration:</p>
+<ul>
+<li><strong>ACR:</strong> Annual Doppler accuracy verification</li>
+<li><strong>IAC:</strong> Velocity accuracy within manufacturer specifications</li>
+<li><strong>ICAVL:</strong> Documented QA program with Doppler testing</li>
+</ul>
+
+<h3>Maintaining Calibration</h3>
+<p>Beyond initial calibration, ongoing quality assurance should include:</p>
+<ul>
+<li>Quarterly phantom verification testing</li>
+<li>Pre-procedure checks for critical examinations</li>
+<li>Documentation of any service or software updates</li>
+<li>Comparison between multiple transducers</li>
+</ul>
+
+<p>Proper velocity calibration is not just a regulatory requirement—it's essential for patient safety and diagnostic confidence. Contact JJ&A Instruments to learn how our calibration phantoms and services can support your quality assurance program.</p>''',
+                'author': 'Dr. Sarah Chen',
+                'category': 'Quality Assurance',
+                'tags': 'Calibration,Doppler,Velocity,QA,Physics'
             }
         ]
         
