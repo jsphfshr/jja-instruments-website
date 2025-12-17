@@ -30,8 +30,8 @@
   --color-medical-green: #00a878;
 
   /* Typography - with i18n font support */
-  --font-display: "Nunito Sans", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: "Nunito Sans", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: Avenir, "Avenir Next", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: Avenir, "Avenir Next", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -1610,7 +1610,7 @@ textarea:focus-visible {
 
 /* Hindi (Devanagari script) */
 html[lang="hi"] {
-  --font-body: "Noto Sans Devanagari", "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Noto Sans Devanagari", Avenir, "Avenir Next", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html[lang="hi"] body {
@@ -1620,7 +1620,7 @@ html[lang="hi"] body {
 
 /* Chinese Simplified */
 html[lang="zh"] {
-  --font-body: "Noto Sans SC", "DM Sans", -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
+  --font-body: "Noto Sans SC", Avenir, "Avenir Next", -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
 }
 
 html[lang="zh"] body {
@@ -1630,7 +1630,7 @@ html[lang="zh"] body {
 
 /* Japanese */
 html[lang="ja"] {
-  --font-body: "Noto Sans JP", "DM Sans", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  --font-body: "Noto Sans JP", Avenir, "Avenir Next", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
 }
 
 html[lang="ja"] body {
