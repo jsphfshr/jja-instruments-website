@@ -186,6 +186,11 @@ h2 em {
   font-size: 0.875rem;
 }
 
+.btn-nav:hover {
+  background: var(--color-primary-dark);
+  color: white;
+}
+
 .btn.full-width {
   width: 100%;
 }
