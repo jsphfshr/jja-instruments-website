@@ -2409,7 +2409,7 @@ document.addEventListener("DOMContentLoaded", () => {
 class Blog {
   constructor() {
     // API base URL - configurable for development/production
-    this.apiBase = window.BLOG_API_URL || "/api";
+    this.apiBase = window.BLOG_API_URL || "https://jja-instruments-website-production.up.railway.app/api";
 
     // State
     this.currentPage = 1;
