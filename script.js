@@ -235,18 +235,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Lazy load images when they come into view
 if ("IntersectionObserver" in window) {
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          img.removeAttribute("data-src");
+  const imageObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute("data-src");
+          }
+          imageObserver.unobserve(img);
         }
-        imageObserver.unobserve(img);
-      }
-    });
-  }, { rootMargin: "200px" });
+      });
+    },
+    {rootMargin: "200px"}
+  );
 
   document.querySelectorAll("img[data-src]").forEach((img) => {
     imageObserver.observe(img);
@@ -2225,7 +2228,7 @@ class I18n {
 
     // Auto-detect country if no preference stored
     if (!this.getStoredLanguage()) {
-      this.detectCountry().then(lang => {
+      this.detectCountry().then((lang) => {
         if (lang && lang !== this.currentLang && translations[lang]) {
           console.log("Auto-switching to country language:", lang);
           this.changeLanguage(lang);
@@ -2912,15 +2915,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Product Image Gallery
 function changeImage(src, element) {
-  const mainImage = document.getElementById('main-product-image');
+  const mainImage = document.getElementById("main-product-image");
   if (mainImage) {
     mainImage.src = src;
-    mainImage.alt = element.querySelector('img').alt;
+    mainImage.alt = element.querySelector("img").alt;
   }
-  
+
   // Update active thumbnail
-  document.querySelectorAll('.product-image-gallery .thumbnail').forEach(thumb => {
-    thumb.classList.remove('active');
+  document.querySelectorAll(".product-image-gallery .thumbnail").forEach((thumb) => {
+    thumb.classList.remove("active");
   });
-  element.classList.add('active');
+  element.classList.add("active");
 }
