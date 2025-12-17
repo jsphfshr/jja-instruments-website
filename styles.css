@@ -250,8 +250,16 @@ h2 em {
   font-weight: 500;
 }
 
+.nav-links .btn-nav {
+  color: white !important;
+}
+
 .nav-links a:hover {
   color: var(--color-primary);
+}
+
+.nav-links .btn-nav:hover {
+  color: white !important;
 }
 
 /* Language Selector */
