@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fisher-instruments.duckdns.org/sitemap.xml
+Sitemap: https://jja-instruments.com/sitemap.xml
