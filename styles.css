@@ -6,9 +6,9 @@
 /* CSS Variables */
 :root {
   /* Colors - Clean Medical Aesthetic */
-  --color-primary: #0066cc;
-  --color-primary-dark: #004d99;
-  --color-primary-light: #3399ff;
+  --color-primary: #0d4c85;
+  --color-primary-dark: #083a66;
+  --color-primary-light: #1a6bb8;
   --color-accent: #00a878;
   --color-accent-light: #00d998;
 
@@ -25,13 +25,13 @@
   --color-border-strong: #cbd5e1;
 
   /* Medical accent colors */
-  --color-medical-blue: #0077b6;
-  --color-medical-teal: #0096c7;
+  --color-medical-blue: #0d4c85;
+  --color-medical-teal: #0077b6;
   --color-medical-green: #00a878;
 
   /* Typography - with i18n font support */
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-body: "DM Sans", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Nunito Sans", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Nunito Sans", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -117,7 +117,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 800;
   line-height: 1.2;
   color: var(--color-text-dark);
 }
@@ -229,7 +229,7 @@ h2 em {
 .logo-text {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .nav-links {
