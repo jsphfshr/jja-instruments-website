@@ -305,7 +305,7 @@ const translations = {
     "home.hero.cta1": "Explore Products",
     "home.hero.cta2": "Contact Sales",
     "home.hero.years": "Years Experience",
-    "home.hero.countries": "Countries Served",
+    "home.hero.countries": "Woldwide Distribution",
     "home.hero.certified": "Certified",
     "home.hero.scroll": "Scroll to explore",
 
