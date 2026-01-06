@@ -24,6 +24,7 @@ COPY robots.txt /usr/share/nginx/html/
 COPY sitemap.xml /usr/share/nginx/html/
 COPY BingSiteAuth.xml /usr/share/nginx/html/
 COPY assets/ /usr/share/nginx/html/assets/
+COPY locales/ /usr/share/nginx/html/locales/
 
 # Create a simple health check file
 RUN echo "OK" > /usr/share/nginx/html/health
