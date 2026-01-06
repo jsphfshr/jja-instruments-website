@@ -288,6 +288,14 @@ const languageNames = {
   ja: {short: "日", full: "日本語"},
 };
 
+const languageFonts = {
+  ja: "Noto+Sans+JP:wght@400;500;600;700",
+  zh: "Noto+Sans+SC:wght@400;500;600;700",
+  hi: "Noto+Sans+Devanagari:wght@400;500;600;700",
+};
+
+const loadedFonts = new Set();
+
 class I18n {
   constructor() {
     this.currentLang = DEFAULT_LANGUAGE;
@@ -298,6 +306,7 @@ class I18n {
   async init() {
     this.currentLang = this.getStoredLanguage() || this.detectLanguage();
     
+    this.loadLanguageFont(this.currentLang);
     await this.loadTranslations(this.currentLang);
     
     if (this.currentLang !== DEFAULT_LANGUAGE) {
@@ -433,9 +442,20 @@ class I18n {
     });
   }
 
+  loadLanguageFont(lang) {
+    if (!languageFonts[lang] || loadedFonts.has(lang)) return;
+    
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `https://fonts.googleapis.com/css2?family=${languageFonts[lang]}&display=swap`;
+    document.head.appendChild(link);
+    loadedFonts.add(lang);
+  }
+
   async changeLanguage(lang) {
     if (!SUPPORTED_LANGUAGES.includes(lang)) return;
 
+    this.loadLanguageFont(lang);
     await this.loadTranslations(lang);
     
     this.currentLang = lang;

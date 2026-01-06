@@ -33,14 +33,14 @@
     <meta property="og:url" content="https://jja-instruments.com/">
     <meta property="og:title" content="JJ&A Instruments | Precision Ultrasound Equipment">
     <meta property="og:description" content="Industry-leading manufacturer of doppler phantoms, HIFU RF power generators, and ultrasound calibration equipment.">
-    <meta property="og:image" content="https://jja-instruments.com/images/og-image.jpg">
+    <meta property="og:image" content="https://jja-instruments.com/assets/images/MK5-front.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://jja-instruments.com/">
     <meta property="twitter:title" content="JJ&A Instruments | Precision Ultrasound Equipment">
     <meta property="twitter:description" content="Industry-leading manufacturer of doppler phantoms, HIFU RF power generators, and ultrasound calibration equipment.">
-    <meta property="twitter:image" content="https://jja-instruments.com/images/og-image.jpg">
+    <meta property="twitter:image" content="https://jja-instruments.com/assets/images/MK5-front.jpg">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://jja-instruments.com/">
@@ -48,10 +48,14 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='5' y='5' width='90' height='90' rx='20' fill='%230d4c85'/><path d='M15 50 Q25 50 30 35 Q35 20 40 35 Q45 50 50 50 Q55 50 60 65 Q65 80 70 65 Q75 50 85 50' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/><circle cx='50' cy='50' r='4' fill='white'/></svg>">
     
-    <!-- Google Fonts for internationalization -->
+    <!-- Preconnect for fonts (loaded conditionally by JS based on language) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="/locales/en.json" as="fetch" crossorigin>
     
     <link rel="stylesheet" href="styles.css">
     
@@ -63,7 +67,7 @@
         "name": "JJ&A Instruments",
         "description": "Manufacturer of precision ultrasound equipment including doppler phantoms and HIFU RF power generators for medical applications, research, and OEM integration.",
         "url": "https://jja-instruments.com",
-        "logo": "https://jja-instruments.com/images/logo.png",
+        "logo": "https://jja-instruments.com/assets/images/logo.png",
         "sameAs": [],
         "contactPoint": {
             "@type": "ContactPoint",

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d4c85"/>
+      <stop offset="100%" style="stop-color:#083a66"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(100, 180)">
+    <rect x="0" y="0" width="80" height="80" rx="16" fill="#fff" opacity="0.9"/>
+    <path d="M12 40 Q24 40 28 28 Q32 16 36 28 Q40 40 44 40 Q48 40 52 52 Q56 64 60 52 Q64 40 68 40" 
+          fill="none" stroke="#0d4c85" stroke-width="4" stroke-linecap="round" transform="translate(4,4)"/>
+    <circle cx="40" cy="40" r="3" fill="#0d4c85"/>
+  </g>
+  <text x="200" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#fff">Mark V Doppler Phantom</text>
+  <text x="100" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#fff" opacity="0.9">Ultrasound Quality Assurance &amp; Calibration</text>
+  <g transform="translate(100, 380)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="20" fill="#00d998">✓</text>
+    <text x="30" y="0" font-family="system-ui, sans-serif" font-size="18" fill="#fff" opacity="0.85">10-200 cm/s velocity range</text>
+  </g>
+  <g transform="translate(100, 420)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="20" fill="#00d998">✓</text>
+    <text x="30" y="0" font-family="system-ui, sans-serif" font-size="18" fill="#fff" opacity="0.85">±1% NIST-traceable accuracy</text>
+  </g>
+  <g transform="translate(100, 460)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="20" fill="#00d998">✓</text>
+    <text x="30" y="0" font-family="system-ui, sans-serif" font-size="18" fill="#fff" opacity="0.85">ACR, IAC, ICAVL compliant</text>
+  </g>
+  <text x="100" y="550" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#fff" opacity="0.6">JJ&amp;A Instruments | jja-instruments.com</text>
+</svg>
