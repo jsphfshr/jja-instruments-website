@@ -1,26 +1,30 @@
 """
 JJ&A Instruments Blog API
-Flask backend for blog posts and comments
+Flask backend for blog posts, comments, and admin authentication
 """
 
 import os
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import Flask, request, jsonify, g
 from flask_cors import CORS
 from functools import wraps
 import re
 import html
+import jwt
+import bcrypt
+import secrets
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True)
 
 # Configuration
 DATABASE = os.environ.get('DATABASE_PATH', '/app/data/blog.db')
+JWT_SECRET = os.environ.get('JWT_SECRET', secrets.token_hex(32))
+JWT_EXPIRY_HOURS = int(os.environ.get('JWT_EXPIRY_HOURS', 24))
 ADMIN_KEY = os.environ.get('ADMIN_KEY', 'change-this-in-production')
 
 def get_db():
-    """Get database connection for current request"""
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(DATABASE)
@@ -29,19 +33,16 @@ def get_db():
 
 @app.teardown_appcontext
 def close_connection(exception):
-    """Close database connection at end of request"""
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
 
 def init_db():
-    """Initialize database tables"""
     os.makedirs(os.path.dirname(DATABASE), exist_ok=True)
     
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     
-    # Create blog posts table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS posts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -59,7 +60,6 @@ def init_db():
         )
     ''')
     
-    # Create comments table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS comments (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -75,15 +75,41 @@ def init_db():
         )
     ''')
     
-    # Create indexes
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            role TEXT DEFAULT 'admin',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            last_login TIMESTAMP
+        )
+    ''')
+    
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_posts_slug ON posts (slug)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_posts_published ON posts (published)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_comments_post_id ON comments (post_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_comments_approved ON comments (approved)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_users_username ON users (username)')
     
     conn.commit()
     
-    # Insert sample blog posts if database is empty
+    cursor.execute('SELECT COUNT(*) FROM users')
+    if cursor.fetchone()[0] == 0:
+        default_password = os.environ.get('ADMIN_PASSWORD', 'admin123')
+        password_hash = bcrypt.hashpw(default_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        try:
+            cursor.execute('''
+                INSERT INTO users (username, email, password_hash, role)
+                VALUES (?, ?, ?, ?)
+            ''', ('admin', 'admin@jja-instruments.com', password_hash, 'admin'))
+            conn.commit()
+            print(f"Created default admin user. Username: admin, Password: {default_password}")
+            print("IMPORTANT: Change the default password immediately!")
+        except sqlite3.IntegrityError:
+            pass
+    
     cursor.execute('SELECT COUNT(*) FROM posts')
     if cursor.fetchone()[0] == 0:
         sample_posts = [
@@ -147,55 +173,13 @@ def init_db():
                 'tags': 'ACR,Accreditation,Compliance,Regulations'
             },
             {
-                'title': 'String Phantom vs Flow Phantom: Choosing the Right QA Tool',
-                'slug': 'string-phantom-vs-flow-phantom',
-                'excerpt': 'Compare the advantages of string phantoms and flow phantoms for Doppler ultrasound calibration.',
-                'content': '''<p>When selecting a Doppler phantom for your QA program, understanding the differences between string phantoms and flow phantoms helps ensure you choose the right tool for your needs.</p>
-
-<h3>String Phantoms</h3>
-<p>String phantoms use a moving filament at precisely controlled velocities to generate a Doppler signal.</p>
-
-<h4>Advantages:</h4>
-<ul>
-<li><strong>High Accuracy:</strong> ±1% velocity accuracy is achievable</li>
-<li><strong>Low Maintenance:</strong> No blood-mimicking fluid to prepare or replace</li>
-<li><strong>Rapid Setup:</strong> Ready to use in minutes</li>
-<li><strong>Consistent Results:</strong> No temperature or viscosity variables</li>
-<li><strong>Long Lifespan:</strong> Minimal consumables</li>
-</ul>
-
-<h3>Flow Phantoms</h3>
-<p>Flow phantoms circulate blood-mimicking fluid through vessel-like structures.</p>
-
-<h4>Advantages:</h4>
-<ul>
-<li>More realistic acoustic scattering properties</li>
-<li>Can simulate pulsatile flow patterns</li>
-<li>Better representation of spectral broadening</li>
-</ul>
-
-<h4>Disadvantages:</h4>
-<ul>
-<li>Require temperature control</li>
-<li>Blood-mimicking fluid degrades over time</li>
-<li>More complex setup and maintenance</li>
-<li>Higher ongoing costs</li>
-</ul>
-
-<h3>Recommendation</h3>
-<p>For routine Doppler velocity calibration and accreditation compliance, string phantoms offer the best combination of accuracy, convenience, and cost-effectiveness. The JJ&A Instruments Mark V is the preferred choice for clinical QA programs worldwide.</p>''',
-                'author': 'Dr. James Wilson',
-                'category': 'Technology',
-                'tags': 'Phantoms,Technology,QA,Equipment'
-            },
-            {
                 'title': 'Introduction to High-Intensity Focused Ultrasound (HIFU) Technology',
                 'slug': 'introduction-to-hifu-technology',
-                'excerpt': 'Explore the principles, applications, and quality assurance requirements for High-Intensity Focused Ultrasound systems.',
-                'content': '''<p>High-Intensity Focused Ultrasound (HIFU) represents one of the most significant advances in non-invasive therapeutic ultrasound technology. By focusing acoustic energy to create precise thermal ablation, HIFU enables treatment of tumors and other conditions without surgical incisions.</p>
+                'excerpt': 'Explore the principles, applications, and future of High-Intensity Focused Ultrasound systems.',
+                'content': '''<p>High-Intensity Focused Ultrasound (HIFU) represents one of the most significant advances in non-invasive therapeutic ultrasound technology.</p>
 
 <h3>How HIFU Works</h3>
-<p>HIFU systems concentrate ultrasound waves at a focal point within the body, generating temperatures exceeding 60°C. This rapid heating causes coagulative necrosis of targeted tissue while sparing surrounding structures. The precision of HIFU depends critically on accurate acoustic output and focal positioning.</p>
+<p>HIFU systems concentrate ultrasound waves at a focal point within the body, generating temperatures exceeding 60°C. This rapid heating causes coagulative necrosis of targeted tissue while sparing surrounding structures.</p>
 
 <h3>Clinical Applications</h3>
 <ul>
@@ -203,81 +187,13 @@ def init_db():
 <li><strong>Urology:</strong> Benign prostatic hyperplasia (BPH) treatment</li>
 <li><strong>Gynecology:</strong> Uterine fibroid ablation</li>
 <li><strong>Neurology:</strong> Essential tremor and Parkinson's disease treatment</li>
-<li><strong>Aesthetics:</strong> Non-invasive body contouring and skin tightening</li>
-</ul>
-
-<h3>Quality Assurance Considerations</h3>
-<p>HIFU systems require rigorous QA protocols to ensure patient safety and treatment efficacy:</p>
-<ul>
-<li><strong>Acoustic Power Calibration:</strong> Regular verification of output power levels</li>
-<li><strong>Focal Accuracy Testing:</strong> Confirming the focal point aligns with imaging guidance</li>
-<li><strong>Thermal Dosimetry:</strong> Validating temperature elevation at the target</li>
-<li><strong>Imaging Integration:</strong> Ensuring MRI or ultrasound guidance accuracy</li>
 </ul>
 
 <h3>The Role of HIFU Generators</h3>
-<p>The HIFU generator is the heart of any therapeutic ultrasound system. It must deliver precise, stable power output across a range of frequencies and duty cycles. JJ&A Instruments offers HIFU generator solutions designed for both clinical applications and research environments, with built-in calibration verification capabilities.</p>
-
-<h3>Future Directions</h3>
-<p>HIFU technology continues to evolve with developments in real-time MR thermometry, histotripsy (mechanical tissue fractionation), and combination therapies. As applications expand, robust quality assurance becomes increasingly critical for safe and effective treatment delivery.</p>''',
+<p>The HIFU generator is the heart of any therapeutic ultrasound system. JJ&A Instruments offers HIFU generator solutions designed for both clinical applications and research environments.</p>''',
                 'author': 'Dr. Elena Rodriguez, PhD',
                 'category': 'Technology',
                 'tags': 'HIFU,Therapeutic Ultrasound,Technology,Research'
-            },
-            {
-                'title': 'Blood Flow Velocity Calibration: Principles and Best Practices',
-                'slug': 'blood-flow-velocity-calibration',
-                'excerpt': 'A technical guide to understanding and implementing accurate blood flow velocity calibration for Doppler ultrasound systems.',
-                'content': '''<p>Accurate blood flow velocity measurement is fundamental to vascular diagnostics. From detecting carotid stenosis to evaluating cardiac function, clinical decisions depend on precise Doppler velocity readings. This article examines the principles of velocity calibration and best practices for ensuring measurement accuracy.</p>
-
-<h3>The Physics of Doppler Velocity Measurement</h3>
-<p>Doppler ultrasound calculates blood flow velocity using the Doppler equation:</p>
-<p><strong>V = (Fd × c) / (2 × Ft × cos θ)</strong></p>
-<p>Where V is velocity, Fd is the Doppler frequency shift, c is the speed of sound, Ft is the transmitted frequency, and θ is the Doppler angle. Errors in any of these parameters affect velocity accuracy.</p>
-
-<h3>Common Sources of Velocity Error</h3>
-<ul>
-<li><strong>Angle Correction Errors:</strong> The cosine term makes measurements highly sensitive to angle estimation, especially above 60°</li>
-<li><strong>Speed of Sound Assumptions:</strong> Systems assume 1540 m/s, but tissue variations can introduce 2-5% errors</li>
-<li><strong>Frequency Calibration Drift:</strong> Electronic components can drift over time</li>
-<li><strong>Spectral Broadening:</strong> Finite sample volume size causes velocity spread in the spectrum</li>
-<li><strong>Wall Filter Settings:</strong> Inappropriate filters can exclude low-velocity components</li>
-</ul>
-
-<h3>Calibration Methods</h3>
-<h4>String Phantom Method</h4>
-<p>String phantoms provide the gold standard for velocity calibration. A precision motor drives a filament at known velocities (typically 10-200 cm/s), allowing direct comparison with displayed values. The JJ&A Mark V achieves ±1% velocity accuracy, traceable to national standards.</p>
-
-<h4>Testing Protocol</h4>
-<ol>
-<li>Set phantom to multiple velocities spanning clinical range (e.g., 25, 50, 100, 150 cm/s)</li>
-<li>Test at multiple Doppler angles (30°, 45°, 60°) to verify angle correction</li>
-<li>Compare displayed velocity to known phantom velocity</li>
-<li>Document results and calculate percentage error</li>
-<li>Acceptable tolerance: typically ±5% for clinical systems</li>
-</ol>
-
-<h3>Accreditation Requirements</h3>
-<p>Major accrediting bodies require documented velocity calibration:</p>
-<ul>
-<li><strong>ACR:</strong> Annual Doppler accuracy verification</li>
-<li><strong>IAC:</strong> Velocity accuracy within manufacturer specifications</li>
-<li><strong>ICAVL:</strong> Documented QA program with Doppler testing</li>
-</ul>
-
-<h3>Maintaining Calibration</h3>
-<p>Beyond initial calibration, ongoing quality assurance should include:</p>
-<ul>
-<li>Quarterly phantom verification testing</li>
-<li>Pre-procedure checks for critical examinations</li>
-<li>Documentation of any service or software updates</li>
-<li>Comparison between multiple transducers</li>
-</ul>
-
-<p>Proper velocity calibration is not just a regulatory requirement—it's essential for patient safety and diagnostic confidence. Contact JJ&A Instruments to learn how our calibration phantoms and services can support your quality assurance program.</p>''',
-                'author': 'Dr. Sarah Chen',
-                'category': 'Quality Assurance',
-                'tags': 'Calibration,Doppler,Velocity,QA,Physics'
             }
         ]
         
@@ -292,71 +208,232 @@ def init_db():
     
     conn.close()
 
-def require_admin(f):
-    """Decorator to require admin authentication"""
+def create_token(user_id, username, role):
+    payload = {
+        'user_id': user_id,
+        'username': username,
+        'role': role,
+        'exp': datetime.utcnow() + timedelta(hours=JWT_EXPIRY_HOURS),
+        'iat': datetime.utcnow()
+    }
+    return jwt.encode(payload, JWT_SECRET, algorithm='HS256')
+
+def verify_token(token):
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+        return payload
+    except jwt.ExpiredSignatureError:
+        return None
+    except jwt.InvalidTokenError:
+        return None
+
+def require_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        auth_key = request.headers.get('X-Admin-Key')
-        if auth_key != ADMIN_KEY:
-            return jsonify({'error': 'Unauthorized'}), 401
+        auth_header = request.headers.get('Authorization')
+        admin_key = request.headers.get('X-Admin-Key')
+        
+        if admin_key == ADMIN_KEY:
+            g.current_user = {'user_id': 0, 'username': 'legacy_admin', 'role': 'admin'}
+            return f(*args, **kwargs)
+        
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return jsonify({'error': 'Authorization required'}), 401
+        
+        token = auth_header.split(' ')[1]
+        payload = verify_token(token)
+        
+        if not payload:
+            return jsonify({'error': 'Invalid or expired token'}), 401
+        
+        g.current_user = payload
+        return f(*args, **kwargs)
+    return decorated
+
+def require_admin(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth_header = request.headers.get('Authorization')
+        admin_key = request.headers.get('X-Admin-Key')
+        
+        if admin_key == ADMIN_KEY:
+            g.current_user = {'user_id': 0, 'username': 'legacy_admin', 'role': 'admin'}
+            return f(*args, **kwargs)
+        
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return jsonify({'error': 'Authorization required'}), 401
+        
+        token = auth_header.split(' ')[1]
+        payload = verify_token(token)
+        
+        if not payload:
+            return jsonify({'error': 'Invalid or expired token'}), 401
+        
+        if payload.get('role') != 'admin':
+            return jsonify({'error': 'Admin access required'}), 403
+        
+        g.current_user = payload
         return f(*args, **kwargs)
     return decorated
 
 def sanitize_html(text):
-    """Basic HTML sanitization"""
-    # Allow basic formatting tags
     allowed_tags = ['p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'h3', 'h4', 'a', 'blockquote']
-    # Escape all HTML first
     text = html.escape(text)
-    # Then selectively unescape allowed tags (simplified approach)
     return text
 
 def create_slug(title):
-    """Create URL-friendly slug from title"""
     slug = title.lower()
     slug = re.sub(r'[^a-z0-9\s-]', '', slug)
     slug = re.sub(r'[\s_]+', '-', slug)
     slug = re.sub(r'-+', '-', slug)
     return slug.strip('-')
 
-# Health check endpoint
 @app.route('/health')
 def health():
     return jsonify({'status': 'healthy', 'service': 'blog-api'})
 
-# ============ Blog Posts API ============
+
+@app.route('/api/auth/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    username = data.get('username', '').strip()
+    password = data.get('password', '')
+    
+    if not username or not password:
+        return jsonify({'error': 'Username and password are required'}), 400
+    
+    db = get_db()
+    user = db.execute(
+        'SELECT * FROM users WHERE username = ? OR email = ?',
+        (username, username)
+    ).fetchone()
+    
+    if not user:
+        return jsonify({'error': 'Invalid credentials'}), 401
+    
+    if not bcrypt.checkpw(password.encode('utf-8'), user['password_hash'].encode('utf-8')):
+        return jsonify({'error': 'Invalid credentials'}), 401
+    
+    db.execute(
+        'UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?',
+        (user['id'],)
+    )
+    db.commit()
+    
+    token = create_token(user['id'], user['username'], user['role'])
+    
+    return jsonify({
+        'token': token,
+        'user': {
+            'id': user['id'],
+            'username': user['username'],
+            'email': user['email'],
+            'role': user['role']
+        }
+    })
+
+@app.route('/api/auth/verify', methods=['GET'])
+@require_auth
+def verify_auth():
+    return jsonify({
+        'valid': True,
+        'user': {
+            'id': g.current_user.get('user_id'),
+            'username': g.current_user.get('username'),
+            'role': g.current_user.get('role')
+        }
+    })
+
+@app.route('/api/auth/change-password', methods=['POST'])
+@require_auth
+def change_password():
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    current_password = data.get('current_password', '')
+    new_password = data.get('new_password', '')
+    
+    if not current_password or not new_password:
+        return jsonify({'error': 'Current and new password are required'}), 400
+    
+    if len(new_password) < 8:
+        return jsonify({'error': 'New password must be at least 8 characters'}), 400
+    
+    db = get_db()
+    user = db.execute(
+        'SELECT * FROM users WHERE id = ?',
+        (g.current_user['user_id'],)
+    ).fetchone()
+    
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    
+    if not bcrypt.checkpw(current_password.encode('utf-8'), user['password_hash'].encode('utf-8')):
+        return jsonify({'error': 'Current password is incorrect'}), 401
+    
+    new_hash = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    
+    db.execute(
+        'UPDATE users SET password_hash = ? WHERE id = ?',
+        (new_hash, user['id'])
+    )
+    db.commit()
+    
+    return jsonify({'message': 'Password changed successfully'})
+
 
 @app.route('/api/posts', methods=['GET'])
 def get_posts():
-    """Get all published blog posts"""
     db = get_db()
     
-    # Query parameters
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 10, type=int)
     category = request.args.get('category')
     tag = request.args.get('tag')
+    include_unpublished = request.args.get('include_unpublished', 'false').lower() == 'true'
     
-    per_page = min(per_page, 50)  # Limit max per page
+    per_page = min(per_page, 50)
     offset = (page - 1) * per_page
     
-    # Build query
-    query = 'SELECT * FROM posts WHERE published = 1'
+    if include_unpublished:
+        auth_header = request.headers.get('Authorization')
+        admin_key = request.headers.get('X-Admin-Key')
+        
+        is_admin = False
+        if admin_key == ADMIN_KEY:
+            is_admin = True
+        elif auth_header and auth_header.startswith('Bearer '):
+            token = auth_header.split(' ')[1]
+            payload = verify_token(token)
+            if payload and payload.get('role') == 'admin':
+                is_admin = True
+        
+        if not is_admin:
+            include_unpublished = False
+    
+    query = 'SELECT * FROM posts'
     params = []
     
+    if not include_unpublished:
+        query += ' WHERE published = 1'
+    
     if category:
-        query += ' AND category = ?'
+        query += ' AND category = ?' if 'WHERE' in query else ' WHERE category = ?'
         params.append(category)
     
     if tag:
-        query += ' AND tags LIKE ?'
+        query += ' AND tags LIKE ?' if 'WHERE' in query else ' WHERE tags LIKE ?'
         params.append(f'%{tag}%')
     
-    # Get total count
     count_query = query.replace('SELECT *', 'SELECT COUNT(*)')
     total = db.execute(count_query, params).fetchone()[0]
     
-    # Get posts
     query += ' ORDER BY created_at DESC LIMIT ? OFFSET ?'
     params.extend([per_page, offset])
     
@@ -374,12 +451,27 @@ def get_posts():
 
 @app.route('/api/posts/<slug>', methods=['GET'])
 def get_post(slug):
-    """Get single blog post by slug"""
     db = get_db()
-    post = db.execute(
-        'SELECT * FROM posts WHERE slug = ? AND published = 1', 
-        (slug,)
-    ).fetchone()
+    
+    auth_header = request.headers.get('Authorization')
+    admin_key = request.headers.get('X-Admin-Key')
+    
+    is_admin = False
+    if admin_key == ADMIN_KEY:
+        is_admin = True
+    elif auth_header and auth_header.startswith('Bearer '):
+        token = auth_header.split(' ')[1]
+        payload = verify_token(token)
+        if payload and payload.get('role') == 'admin':
+            is_admin = True
+    
+    if is_admin:
+        post = db.execute('SELECT * FROM posts WHERE slug = ?', (slug,)).fetchone()
+    else:
+        post = db.execute(
+            'SELECT * FROM posts WHERE slug = ? AND published = 1', 
+            (slug,)
+        ).fetchone()
     
     if not post:
         return jsonify({'error': 'Post not found'}), 404
@@ -389,7 +481,6 @@ def get_post(slug):
 @app.route('/api/posts', methods=['POST'])
 @require_admin
 def create_post():
-    """Create new blog post (admin only)"""
     data = request.get_json()
     
     if not data or not data.get('title') or not data.get('content'):
@@ -399,7 +490,6 @@ def create_post():
     
     slug = data.get('slug') or create_slug(data['title'])
     
-    # Check for duplicate slug
     existing = db.execute('SELECT id FROM posts WHERE slug = ?', (slug,)).fetchone()
     if existing:
         slug = f"{slug}-{int(datetime.now().timestamp())}"
@@ -413,7 +503,7 @@ def create_post():
             slug,
             data.get('excerpt', ''),
             data['content'],
-            data.get('author', 'Admin'),
+            data.get('author', g.current_user.get('username', 'Admin')),
             data.get('category', 'General'),
             data.get('tags', ''),
             data.get('featured_image', ''),
@@ -429,7 +519,6 @@ def create_post():
 @app.route('/api/posts/<slug>', methods=['PUT'])
 @require_admin
 def update_post(slug):
-    """Update blog post (admin only)"""
     data = request.get_json()
     db = get_db()
     
@@ -465,7 +554,6 @@ def update_post(slug):
 @app.route('/api/posts/<slug>', methods=['DELETE'])
 @require_admin
 def delete_post(slug):
-    """Delete blog post (admin only)"""
     db = get_db()
     
     post = db.execute('SELECT * FROM posts WHERE slug = ?', (slug,)).fetchone()
@@ -481,7 +569,6 @@ def delete_post(slug):
 
 @app.route('/api/categories', methods=['GET'])
 def get_categories():
-    """Get all categories with post counts"""
     db = get_db()
     categories = db.execute('''
         SELECT category, COUNT(*) as count 
@@ -493,14 +580,11 @@ def get_categories():
     
     return jsonify([dict(cat) for cat in categories])
 
-# ============ Comments API ============
 
 @app.route('/api/posts/<slug>/comments', methods=['GET'])
 def get_comments(slug):
-    """Get all approved comments for a post"""
     db = get_db()
     
-    # Get post ID
     post = db.execute('SELECT id FROM posts WHERE slug = ?', (slug,)).fetchone()
     if not post:
         return jsonify({'error': 'Post not found'}), 404
@@ -512,7 +596,6 @@ def get_comments(slug):
         ORDER BY created_at ASC
     ''', (post['id'],)).fetchall()
     
-    # Build comment tree
     comment_dict = {}
     root_comments = []
     
@@ -535,13 +618,11 @@ def get_comments(slug):
 
 @app.route('/api/posts/<slug>/comments', methods=['POST'])
 def create_comment(slug):
-    """Add a comment to a post"""
     data = request.get_json()
     
     if not data:
         return jsonify({'error': 'No data provided'}), 400
     
-    # Validate required fields
     author_name = data.get('author_name', '').strip()
     author_email = data.get('author_email', '').strip()
     content = data.get('content', '').strip()
@@ -549,11 +630,9 @@ def create_comment(slug):
     if not author_name or not author_email or not content:
         return jsonify({'error': 'Name, email, and comment are required'}), 400
     
-    # Basic email validation
     if not re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]+$', author_email):
         return jsonify({'error': 'Invalid email address'}), 400
     
-    # Content length validation
     if len(content) > 5000:
         return jsonify({'error': 'Comment too long (max 5000 characters)'}), 400
     
@@ -562,14 +641,12 @@ def create_comment(slug):
     
     db = get_db()
     
-    # Get post ID
     post = db.execute('SELECT id FROM posts WHERE slug = ? AND published = 1', (slug,)).fetchone()
     if not post:
         return jsonify({'error': 'Post not found'}), 404
     
     parent_id = data.get('parent_id')
     
-    # Validate parent comment exists
     if parent_id:
         parent = db.execute(
             'SELECT id FROM comments WHERE id = ? AND post_id = ?', 
@@ -579,7 +656,6 @@ def create_comment(slug):
             return jsonify({'error': 'Parent comment not found'}), 404
     
     try:
-        # Auto-approve comments (can be changed to require moderation)
         cursor = db.execute('''
             INSERT INTO comments (post_id, parent_id, author_name, author_email, content, approved)
             VALUES (?, ?, ?, ?, ?, ?)
@@ -601,7 +677,6 @@ def create_comment(slug):
 @app.route('/api/comments/<int:comment_id>', methods=['DELETE'])
 @require_admin
 def delete_comment(comment_id):
-    """Delete a comment (admin only)"""
     db = get_db()
     
     comment = db.execute('SELECT * FROM comments WHERE id = ?', (comment_id,)).fetchone()
@@ -618,7 +693,6 @@ def delete_comment(comment_id):
 @app.route('/api/comments/<int:comment_id>/approve', methods=['POST'])
 @require_admin
 def approve_comment(comment_id):
-    """Approve a comment (admin only)"""
     db = get_db()
     
     try:
@@ -628,7 +702,6 @@ def approve_comment(comment_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# Initialize database on startup
 with app.app_context():
     init_db()
 

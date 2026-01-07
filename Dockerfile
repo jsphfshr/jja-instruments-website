@@ -18,6 +18,7 @@ COPY nginx.conf /etc/nginx/templates/default.conf.template
 COPY index.html /usr/share/nginx/html/
 COPY doppler-phantom.html /usr/share/nginx/html/
 COPY hifu-generator.html /usr/share/nginx/html/
+COPY admin.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY script.js /usr/share/nginx/html/
 COPY robots.txt /usr/share/nginx/html/
