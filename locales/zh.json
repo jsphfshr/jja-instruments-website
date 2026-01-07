@@ -1,5 +1,5 @@
 {
-  "meta.title": "JJ&A Instruments | 精密超声设备与校准服务",
+  "meta.title": "JJ&A Ultrasound Instruments | 精密超声设备与校准服务",
 
   "nav.products": "产品",
   "nav.services": "服务",
@@ -29,7 +29,7 @@
 
   "home.hero.badge": "精密超声技术",
   "home.hero.title": "推进医学<br><em>超声创新</em>",
-  "home.hero.subtitle": "JJ&A Instruments设计和制造用于诊断QA和治疗应用的精密超声设备。从多普勒模体到HIFU射频功率发生器，我们为医疗保健提供者、研究人员和OEM提供可靠、高性能的解决方案。",
+  "home.hero.subtitle": "JJ&A Ultrasound Instruments设计和制造用于诊断QA和治疗应用的精密超声设备。从多普勒模体到HIFU射频功率发生器，我们为医疗保健提供者、研究人员和OEM提供可靠、高性能的解决方案。",
   "home.hero.cta1": "探索产品",
   "home.hero.cta2": "联系销售",
   "home.hero.years": "年经验",
@@ -102,9 +102,9 @@
   "blog.replyingto": "回复给",
   "blog.cancel": "取消",
 
-  "about.tag": "关于JJ&A Instruments",
+  "about.tag": "关于JJ&A Ultrasound Instruments",
   "about.title": "自1998年以来的卓越工程",
-  "about.desc1": "25年来，JJ&A Instruments一直处于超声技术创新的前沿。我们位于加利福尼亚州圣地亚哥，将深厚的技术专长与对质量的承诺相结合，成为全球医疗保健组织值得信赖的合作伙伴。",
+  "about.desc1": "25年来，JJ&A Ultrasound Instruments一直处于超声技术创新的前沿。我们位于加利福尼亚州圣地亚哥，将深厚的技术专长与对质量的承诺相结合，成为全球医疗保健组织值得信赖的合作伙伴。",
   "about.desc2": "我们的工程师和科学家团队不断突破超声校准和治疗应用的可能性边界，确保客户能够获得最准确、最可靠的设备。",
   "about.desc3": "我们的团队结合了射频工程、声学物理和法规合规方面的深厚专业知识，提供符合最高精度和可靠性标准的产品。",
   "about.stat1.number": "5,000+",
@@ -176,7 +176,7 @@
   "footer.news": "新闻",
   "footer.privacy": "隐私政策",
   "footer.terms": "服务条款",
-  "footer.copyright": "© 2024 JJ&A Instruments。保留所有权利。",
+  "footer.copyright": "© 2024 JJ&A Ultrasound Instruments。保留所有权利。",
   "footer.location": "美国加利福尼亚州圣地亚哥",
   "footer.applications": "应用",
   "footer.recertification": "模体再认证",
@@ -196,7 +196,7 @@
   "doppler.whatis.title": "什么是超声质量保证？",
   "doppler.whatis.lead": "医学超声质量保证（QA）是一套系统化的测试和验证程序，确保诊断超声设备为患者护理准确、一致地运行。",
   "doppler.whatis.p1": "<strong>超声QA涵盖</strong>常规性能测试、校准验证以及美国放射学院（ACR）、跨学科认证委员会（IAC）等认证机构和包括FDA在内的监管机构所要求的文件记录。全面的QA计划保护患者、确保诊断准确性并维持医疗标准合规。",
-  "doppler.whatis.p2": "<strong>多普勒速度校准</strong>是超声QA的关键组成部分。准确的血流速度测量对于诊断血管疾病严重程度、评估心脏功能、监测胎儿健康和指导治疗决策至关重要。JJ&A Instruments Mark V多普勒模体提供验证超声系统速度测量准确性所需的NIST可追溯参考标准。",
+  "doppler.whatis.p2": "<strong>多普勒速度校准</strong>是超声QA的关键组成部分。准确的血流速度测量对于诊断血管疾病严重程度、评估心脏功能、监测胎儿健康和指导治疗决策至关重要。JJ&A Ultrasound Instruments Mark V多普勒模体提供验证超声系统速度测量准确性所需的NIST可追溯参考标准。",
   "doppler.whatis.p3": "<strong>QA的重要性：</strong>研究表明，未校准的超声系统可能产生10-20%的速度测量误差，可能导致颈动脉狭窄或心脏瓣膜疾病等病症的误诊。使用校准模体进行定期QA测试可确保您的临床测量保持在可接受的精度范围内。",
   "doppler.whatis.diagram.title": "超声QA计划组成部分",
   "doppler.whatis.step1.title": "多普勒速度验证",
@@ -395,7 +395,7 @@
   "hifu.specs.row12.value": "可选屏蔽版本",
   "hifu.specs.cta": "申请完整规格",
   "hifu.specs.avail": "可选：100W、250W、500W型号",
-  "hifu.why.tag": "为什么选择JJ&A Instruments",
+  "hifu.why.tag": "为什么选择JJ&A Ultrasound Instruments",
   "hifu.why.title": "HIFU发生器优势",
   "hifu.why.desc": "专为治疗性超声设计，具有医疗器械开发商所需的可靠性和支持。",
   "hifu.why.quality.title": "医疗级质量",
@@ -431,7 +431,7 @@
   "hifu.contact.desc": "准备为您的HIFU应用提供动力？联系我们获取报价、规格，或与我们的工程团队讨论您的项目需求。",
 
   "aria.mainNav": "主导航",
-  "aria.home": "JJ&A Instruments 首页",
+  "aria.home": "JJ&A Ultrasound Instruments 首页",
   "aria.toggleMenu": "切换菜单",
   "aria.selectLang": "选择语言",
   "aria.contactForm": "联系表单",

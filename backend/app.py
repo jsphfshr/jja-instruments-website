@@ -1,5 +1,5 @@
 """
-JJ&A Instruments Blog API
+JJ&A Ultrasound Instruments Blog API
 Flask backend for blog posts, comments, and admin authentication
 """
 
@@ -132,7 +132,7 @@ def init_db():
 <h3>Recommended Testing Frequency</h3>
 <p>Most accrediting organizations recommend annual Doppler QA testing at minimum. However, quarterly testing provides better ongoing verification and early detection of equipment drift.</p>
 
-<p>Contact JJ&A Instruments to learn how our Mark V Doppler Phantom can support your QA program.</p>''',
+<p>Contact JJ&A Ultrasound Instruments to learn how our Mark V Doppler Phantom can support your QA program.</p>''',
                 'author': 'Dr. Sarah Chen',
                 'category': 'Quality Assurance',
                 'tags': 'QA,Doppler,Ultrasound,Compliance'
@@ -156,7 +156,7 @@ def init_db():
 </ul>
 
 <h3>Doppler Testing Specifics</h3>
-<p>For facilities performing Doppler examinations, ACR requires verification of velocity measurement accuracy. This is typically accomplished using a calibrated Doppler phantom like the JJ&A Instruments Mark V.</p>
+<p>For facilities performing Doppler examinations, ACR requires verification of velocity measurement accuracy. This is typically accomplished using a calibrated Doppler phantom like the JJ&A Ultrasound Instruments Mark V.</p>
 
 <h3>Documentation Requirements</h3>
 <p>All QA testing must be documented with:</p>
@@ -190,7 +190,7 @@ def init_db():
 </ul>
 
 <h3>The Role of HIFU Generators</h3>
-<p>The HIFU generator is the heart of any therapeutic ultrasound system. JJ&A Instruments offers HIFU generator solutions designed for both clinical applications and research environments.</p>''',
+<p>The HIFU generator is the heart of any therapeutic ultrasound system. JJ&A Ultrasound Instruments offers HIFU generator solutions designed for both clinical applications and research environments.</p>''',
                 'author': 'Dr. Elena Rodriguez, PhD',
                 'category': 'Technology',
                 'tags': 'HIFU,Therapeutic Ultrasound,Technology,Research'

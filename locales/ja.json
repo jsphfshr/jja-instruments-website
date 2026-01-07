@@ -1,5 +1,5 @@
 {
-  "meta.title": "JJ&A Instruments | 精密超音波機器・校正サービス",
+  "meta.title": "JJ&A Ultrasound Instruments | 精密超音波機器・校正サービス",
 
   "nav.products": "製品",
   "nav.services": "サービス",
@@ -29,7 +29,7 @@
 
   "home.hero.badge": "精密超音波技術",
   "home.hero.title": "医療用<br><em>超音波イノベーション</em>の推進",
-  "home.hero.subtitle": "JJ&A Instrumentsは、診断QAおよび治療用アプリケーション向けの精密超音波機器を設計・製造しています。ドップラーファントムからHIFU RFパワージェネレーターまで、医療従事者、研究者、OEMに信頼性の高い高性能ソリューションを提供しています。",
+  "home.hero.subtitle": "JJ&A Ultrasound Instrumentsは、診断QAおよび治療用アプリケーション向けの精密超音波機器を設計・製造しています。ドップラーファントムからHIFU RFパワージェネレーターまで、医療従事者、研究者、OEMに信頼性の高い高性能ソリューションを提供しています。",
   "home.hero.cta1": "製品を見る",
   "home.hero.cta2": "営業に連絡",
   "home.hero.years": "年の実績",
@@ -102,9 +102,9 @@
   "blog.replyingto": "返信先",
   "blog.cancel": "キャンセル",
 
-  "about.tag": "JJ&A Instrumentsについて",
+  "about.tag": "JJ&A Ultrasound Instrumentsについて",
   "about.title": "1998年以来の卓越したエンジニアリング",
-  "about.desc1": "25年以上にわたり、JJ&A Instrumentsは超音波技術革新の最前線に立ってきました。カリフォルニア州サンディエゴを拠点に、深い技術専門知識と品質へのコミットメントを組み合わせ、世界中の医療機関から信頼されるパートナーとなっています。",
+  "about.desc1": "25年以上にわたり、JJ&A Ultrasound Instrumentsは超音波技術革新の最前線に立ってきました。カリフォルニア州サンディエゴを拠点に、深い技術専門知識と品質へのコミットメントを組み合わせ、世界中の医療機関から信頼されるパートナーとなっています。",
   "about.desc2": "当社のエンジニアと科学者のチームは、超音波校正と治療アプリケーションの可能性を絶えず広げ、お客様が最も正確で信頼性の高い機器にアクセスできるようにしています。",
   "about.desc3": "当社のチームは、RF工学、音響物理学、規制コンプライアンスの深い専門知識を組み合わせ、最高の精度と信頼性の基準を満たす製品を提供しています。",
   "about.stat1.number": "5,000+",
@@ -176,7 +176,7 @@
   "footer.news": "ニュース",
   "footer.privacy": "プライバシーポリシー",
   "footer.terms": "利用規約",
-  "footer.copyright": "© 2024 JJ&A Instruments. All rights reserved.",
+  "footer.copyright": "© 2024 JJ&A Ultrasound Instruments. All rights reserved.",
   "footer.location": "米国カリフォルニア州サンディエゴ",
   "footer.applications": "アプリケーション",
   "footer.recertification": "ファントム再認証",
@@ -196,7 +196,7 @@
   "doppler.whatis.title": "超音波品質保証とは？",
   "doppler.whatis.lead": "医療用超音波品質保証（QA）は、診断用超音波機器が患者ケアのために正確かつ一貫して機能することを保証する体系的な試験・検証プログラムです。",
   "doppler.whatis.p1": "<strong>超音波QAには</strong>、米国放射線学会（ACR）、学際的認定委員会（IAC）などの認定機関やFDAを含む規制当局が要求する定期的な性能試験、校正検証、文書化が含まれます。包括的なQAプログラムは患者を保護し、診断精度を確保し、医療基準への適合を維持します。",
-  "doppler.whatis.p2": "<strong>ドップラー速度校正</strong>は超音波QAの重要な構成要素です。正確な血流速度測定は、血管疾患の重症度診断、心機能評価、胎児の健康状態モニタリング、治療方針の決定に不可欠です。JJ&A Instruments Mark Vドップラーファントムは、超音波システムが速度を正確に測定していることを検証するために必要なNISTトレーサブルな基準を提供します。",
+  "doppler.whatis.p2": "<strong>ドップラー速度校正</strong>は超音波QAの重要な構成要素です。正確な血流速度測定は、血管疾患の重症度診断、心機能評価、胎児の健康状態モニタリング、治療方針の決定に不可欠です。JJ&A Ultrasound Instruments Mark Vドップラーファントムは、超音波システムが速度を正確に測定していることを検証するために必要なNISTトレーサブルな基準を提供します。",
   "doppler.whatis.p3": "<strong>QAが重要な理由：</strong>研究によると、未校正の超音波システムは10-20%の速度測定誤差を生じる可能性があり、頸動脈狭窄や心臓弁膜症などの誤診につながる可能性があります。校正済みファントムによる定期的なQA試験により、臨床測定が許容精度範囲内に維持されます。",
   "doppler.whatis.diagram.title": "超音波QAプログラムの構成要素",
   "doppler.whatis.step1.title": "ドップラー速度検証",
@@ -395,7 +395,7 @@
   "hifu.specs.row12.value": "シールドバージョン（オプション）",
   "hifu.specs.cta": "完全な仕様を依頼",
   "hifu.specs.avail": "利用可能：100W、250W、500Wモデル",
-  "hifu.why.tag": "JJ&A Instrumentsを選ぶ理由",
+  "hifu.why.tag": "JJ&A Ultrasound Instrumentsを選ぶ理由",
   "hifu.why.title": "HIFUジェネレーターの優位性",
   "hifu.why.desc": "医療機器開発者が求める信頼性とサポートを備えた治療用超音波専用設計。",
   "hifu.why.quality.title": "医療グレードの品質",
@@ -431,7 +431,7 @@
   "hifu.contact.desc": "HIFUアプリケーションへの電力供給の準備はできましたか？価格、仕様、またはプロジェクト要件についてエンジニアリングチームとの相談はお問い合わせください。",
 
   "aria.mainNav": "メインナビゲーション",
-  "aria.home": "JJ&A Instruments ホーム",
+  "aria.home": "JJ&A Ultrasound Instruments ホーム",
   "aria.toggleMenu": "メニュー切替",
   "aria.selectLang": "言語選択",
   "aria.contactForm": "お問い合わせフォーム",

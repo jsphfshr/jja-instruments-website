@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-JJ&A Instruments website - A marketing and e-commerce site for precision ultrasound equipment (doppler phantoms, HIFU RF power generators, and ultrasound calibration equipment). This is a full-stack web application with:
+JJ&A Ultrasound Instruments website - A marketing and e-commerce site for precision ultrasound equipment (doppler phantoms, HIFU RF power generators, and ultrasound calibration equipment). This is a full-stack web application with:
 
 - **Frontend**: Static HTML/CSS/JS with nginx serving the content
 - **Backend**: Flask API for blog posts and comments system

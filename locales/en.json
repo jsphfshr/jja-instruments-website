@@ -1,5 +1,5 @@
 {
-  "meta.title": "JJ&A Instruments | Precision Ultrasound Equipment & Calibration Services",
+  "meta.title": "JJ&A Ultrasound Instruments | Precision Ultrasound Equipment & Calibration Services",
 
   "nav.products": "Products",
   "nav.services": "Services",
@@ -29,7 +29,7 @@
 
   "home.hero.badge": "Precision Ultrasound Technology",
   "home.hero.title": "Advancing Medical<br><em>Ultrasound Innovation</em>",
-  "home.hero.subtitle": "JJ&A Instruments designs and manufactures precision ultrasound equipment for diagnostic QA and therapeutic applications. From Doppler phantoms to HIFU RF power generators, we empower healthcare providers, researchers, and OEMs with reliable, high-performance solutions.",
+  "home.hero.subtitle": "JJ&A Ultrasound Instruments designs and manufactures precision ultrasound equipment for diagnostic QA and therapeutic applications. From Doppler phantoms to HIFU RF power generators, we empower healthcare providers, researchers, and OEMs with reliable, high-performance solutions.",
   "home.hero.cta1": "Explore Products",
   "home.hero.cta2": "Contact Sales",
   "home.hero.years": "Years Experience",
@@ -102,9 +102,9 @@
   "blog.replyingto": "Replying to",
   "blog.cancel": "Cancel",
 
-  "about.tag": "About JJ&A Instruments",
+  "about.tag": "About JJ&A Ultrasound Instruments",
   "about.title": "Engineering Excellence Since 1998",
-  "about.desc1": "For over 25 years, JJ&A Instruments has been at the forefront of ultrasound technology innovation. Based in San Diego, California, we combine deep technical expertise with a commitment to quality that has made us a trusted partner to healthcare organizations worldwide.",
+  "about.desc1": "For over 25 years, JJ&A Ultrasound Instruments has been at the forefront of ultrasound technology innovation. Based in San Diego, California, we combine deep technical expertise with a commitment to quality that has made us a trusted partner to healthcare organizations worldwide.",
   "about.desc2": "Our team of engineers and scientists continuously push the boundaries of what's possible in ultrasound calibration and therapeutic applications, ensuring our customers have access to the most accurate, reliable equipment available.",
   "about.desc3": "Our team combines deep expertise in RF engineering, acoustic physics, and regulatory compliance to deliver products that meet the highest standards of accuracy and reliability.",
   "about.stat1.number": "5,000+",
@@ -176,7 +176,7 @@
   "footer.news": "News",
   "footer.privacy": "Privacy Policy",
   "footer.terms": "Terms of Service",
-  "footer.copyright": "© 2024 JJ&A Instruments. All rights reserved.",
+  "footer.copyright": "© 2024 JJ&A Ultrasound Instruments. All rights reserved.",
   "footer.location": "San Diego, CA, USA",
   "footer.applications": "Applications",
   "footer.recertification": "Phantom Recertification",
@@ -196,7 +196,7 @@
   "doppler.whatis.title": "What is Ultrasound Quality Assurance?",
   "doppler.whatis.lead": "Medical ultrasound quality assurance (QA) is a systematic program of testing and verification that ensures diagnostic ultrasound equipment performs accurately and consistently for patient care.",
   "doppler.whatis.p1": "<strong>Ultrasound QA encompasses</strong> routine performance testing, calibration verification, and documentation required by accrediting bodies such as the American College of Radiology (ACR), Intersocietal Accreditation Commission (IAC), and regulatory agencies including the FDA. A comprehensive QA program protects patients, ensures diagnostic accuracy, and maintains compliance with healthcare standards.",
-  "doppler.whatis.p2": "<strong>Doppler velocity calibration</strong> is a critical component of ultrasound QA. Accurate blood flow velocity measurements are essential for diagnosing vascular disease severity, assessing cardiac function, monitoring fetal well-being, and guiding treatment decisions. The JJ&A Instruments Mark V Doppler Phantom provides the NIST-traceable reference standard needed to verify your ultrasound systems measure velocity accurately.",
+  "doppler.whatis.p2": "<strong>Doppler velocity calibration</strong> is a critical component of ultrasound QA. Accurate blood flow velocity measurements are essential for diagnosing vascular disease severity, assessing cardiac function, monitoring fetal well-being, and guiding treatment decisions. The JJ&A Ultrasound Instruments Mark V Doppler Phantom provides the NIST-traceable reference standard needed to verify your ultrasound systems measure velocity accurately.",
   "doppler.whatis.p3": "<strong>Why QA matters:</strong> Studies show that uncalibrated ultrasound systems can produce velocity measurement errors of 10-20%, potentially leading to misdiagnosis of conditions like carotid stenosis or cardiac valve disease. Regular QA testing with calibrated phantoms ensures your clinical measurements remain within acceptable accuracy limits.",
   "doppler.whatis.diagram.title": "Ultrasound QA Program Components",
   "doppler.whatis.step1.title": "Doppler Velocity Verification",
@@ -395,7 +395,7 @@
   "hifu.specs.row12.value": "Optional shielded version",
   "hifu.specs.cta": "Request Full Specifications",
   "hifu.specs.avail": "Available: 100W, 250W, 500W Models",
-  "hifu.why.tag": "Why JJ&A Instruments",
+  "hifu.why.tag": "Why JJ&A Ultrasound Instruments",
   "hifu.why.title": "The HIFU Generator Advantage",
   "hifu.why.desc": "Purpose-built for therapeutic ultrasound with the reliability and support that medical device developers demand.",
   "hifu.why.quality.title": "Medical-Grade Quality",
@@ -431,7 +431,7 @@
   "hifu.contact.desc": "Ready to power your HIFU application? Contact us for pricing, specifications, or to discuss your project requirements with our engineering team.",
 
   "aria.mainNav": "Main navigation",
-  "aria.home": "JJ&A Instruments Home",
+  "aria.home": "JJ&A Ultrasound Instruments Home",
   "aria.toggleMenu": "Toggle menu",
   "aria.selectLang": "Select language",
   "aria.contactForm": "Contact form",
