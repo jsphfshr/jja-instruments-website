@@ -574,24 +574,38 @@
             async verify() {
                 const token = this.getToken();
                 if (!token) return false;
-                
+
                 try {
                     const response = await fetch(`${API_BASE}/api/auth/verify`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
                     });
-                    
+
                     if (response.ok) {
                         const data = await response.json();
                         this.setUser(data.user);
+
+                        // Refresh token if it's close to expiry (within 24 hours)
+                        const payload = this.decodeToken(token);
+                        if (payload && this.shouldRefreshToken(payload)) {
+                            await this.refreshToken();
+                        }
+
                         return true;
                     }
-                    
+
                     this.removeToken();
                     return false;
                 } catch (e) {
-                    return false;
+                    // Try to refresh token if verification fails due to expiry
+                    try {
+                        await this.refreshToken();
+                        return true;
+                    } catch (refreshError) {
+                        this.removeToken();
+                        return false;
+                    }
                 }
             },
             
@@ -616,6 +630,7 @@
             },
             
             logout() {
+                this.stopPeriodicRefresh();
                 this.removeToken();
                 showLogin();
             },
@@ -623,80 +638,173 @@
             getAuthHeaders() {
                 const token = this.getToken();
                 return token ? { 'Authorization': `Bearer ${token}` } : {};
+            },
+
+            decodeToken(token) {
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    return payload;
+                } catch (e) {
+                    return null;
+                }
+            },
+
+            shouldRefreshToken(payload) {
+                if (!payload || !payload.exp) return false;
+                const expiryTime = payload.exp * 1000; // Convert to milliseconds
+                const now = Date.now();
+                const twentyFourHours = 24 * 60 * 60 * 1000;
+                return (expiryTime - now) < twentyFourHours;
+            },
+
+            async refreshToken() {
+                const token = this.getToken();
+                if (!token) throw new Error('No token to refresh');
+
+                try {
+                    const response = await fetch(`${API_BASE}/api/auth/refresh`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Token refresh failed');
+                    }
+
+                    const data = await response.json();
+                    this.setToken(data.token);
+                    this.setUser(data.user);
+                    return data.user;
+                } catch (e) {
+                    this.removeToken();
+                    throw e;
+                }
+            },
+
+            startPeriodicRefresh() {
+                // Refresh token every 6 hours to keep session alive
+                this.refreshInterval = setInterval(async () => {
+                    try {
+                        await this.refreshToken();
+                        console.log('Token refreshed automatically');
+                    } catch (e) {
+                        console.warn('Failed to refresh token:', e.message);
+                        // If refresh fails, the user will be logged out on next verify call
+                    }
+                }, 6 * 60 * 60 * 1000); // 6 hours
+            },
+
+            stopPeriodicRefresh() {
+                if (this.refreshInterval) {
+                    clearInterval(this.refreshInterval);
+                    this.refreshInterval = null;
+                }
             }
         };
         
         const Posts = {
-            async getAll() {
-                const response = await fetch(`${API_BASE}/api/posts?include_unpublished=true&per_page=100`, {
-                    headers: Auth.getAuthHeaders()
+            async makeAuthenticatedRequest(url, options = {}) {
+                if (!Auth.isAuthenticated()) {
+                    Auth.logout();
+                    throw new Error('You must be logged in to perform this action.');
+                }
+
+                const { headers: optionHeaders, ...restOptions } = options;
+                const mergedHeaders = {
+                    ...Auth.getAuthHeaders(),
+                    ...(optionHeaders || {})
+                };
+
+                let response = await fetch(url, {
+                    ...restOptions,
+                    headers: mergedHeaders
                 });
-                
+
+                if (response.status === 401) {
+                    try {
+                        await Auth.refreshToken();
+                        const newHeaders = {
+                            ...Auth.getAuthHeaders(),
+                            ...(optionHeaders || {})
+                        };
+                        response = await fetch(url, {
+                            ...restOptions,
+                            headers: newHeaders
+                        });
+                    } catch (refreshError) {
+                        Auth.logout();
+                        throw new Error('Session expired. Please log in again.');
+                    }
+                }
+
+                return response;
+            },
+
+            async getAll() {
+                const response = await this.makeAuthenticatedRequest(`${API_BASE}/api/posts?include_unpublished=true&per_page=100`);
+
                 if (!response.ok) throw new Error('Failed to load posts');
-                
+
                 const data = await response.json();
                 return data.posts;
             },
             
             async get(slug) {
-                const response = await fetch(`${API_BASE}/api/posts/${slug}`, {
-                    headers: Auth.getAuthHeaders()
-                });
-                
+                const response = await this.makeAuthenticatedRequest(`${API_BASE}/api/posts/${slug}`);
+
                 if (!response.ok) throw new Error('Post not found');
-                
+
                 return await response.json();
             },
             
             async create(postData) {
-                const response = await fetch(`${API_BASE}/api/posts`, {
+                const response = await this.makeAuthenticatedRequest(`${API_BASE}/api/posts`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        ...Auth.getAuthHeaders()
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(postData)
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (!response.ok) {
                     throw new Error(data.error || 'Failed to create post');
                 }
-                
+
                 return data;
             },
             
             async update(slug, postData) {
-                const response = await fetch(`${API_BASE}/api/posts/${slug}`, {
+                const response = await this.makeAuthenticatedRequest(`${API_BASE}/api/posts/${slug}`, {
                     method: 'PUT',
                     headers: {
-                        'Content-Type': 'application/json',
-                        ...Auth.getAuthHeaders()
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(postData)
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (!response.ok) {
                     throw new Error(data.error || 'Failed to update post');
                 }
-                
+
                 return data;
             },
             
             async delete(slug) {
-                const response = await fetch(`${API_BASE}/api/posts/${slug}`, {
-                    method: 'DELETE',
-                    headers: Auth.getAuthHeaders()
+                const response = await this.makeAuthenticatedRequest(`${API_BASE}/api/posts/${slug}`, {
+                    method: 'DELETE'
                 });
-                
+
                 if (!response.ok) {
                     const data = await response.json();
                     throw new Error(data.error || 'Failed to delete post');
                 }
-                
+
                 return true;
             }
         };
@@ -894,7 +1002,14 @@
         
         postForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
+            // Check if user is authenticated before proceeding
+            if (!Auth.isAuthenticated()) {
+                showToast('You must be logged in to create posts', 'error');
+                showLogin();
+                return;
+            }
+
             const postData = {
                 title: document.getElementById('post-title').value,
                 category: document.getElementById('post-category').value,
@@ -904,7 +1019,7 @@
                 content: document.getElementById('post-content').value,
                 published: document.getElementById('post-published').checked
             };
-            
+
             try {
                 if (editingSlug) {
                     await Posts.update(editingSlug, postData);
@@ -913,7 +1028,7 @@
                     await Posts.create(postData);
                     showToast('Post created successfully');
                 }
-                
+
                 closeModal();
                 loadPosts();
             } catch (e) {
@@ -930,6 +1045,7 @@
         async function init() {
             if (await Auth.verify()) {
                 showDashboard();
+                Auth.startPeriodicRefresh();
             } else {
                 showLogin();
             }

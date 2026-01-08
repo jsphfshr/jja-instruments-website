@@ -541,8 +541,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 class Blog {
   constructor() {
-    // API base URL - configurable for development/production
-    this.apiBase = window.BLOG_API_URL || "https://jja-instruments-website-production.up.railway.app/api";
+    // API base URL - uses relative path for same-origin requests
+    this.apiBase = window.BLOG_API_URL || "/api";
 
     // State
     this.currentPage = 1;

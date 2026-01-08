@@ -55,6 +55,7 @@ services:
     environment:
       - DATABASE_PATH=/app/data/blog.db
       - ADMIN_KEY=${BLOG_ADMIN_KEY:-change-this-in-production}
+      - JWT_SECRET=${JWT_SECRET:-jja-ultrasound-instruments-secure-jwt-secret-key-2024}
       - FLASK_DEBUG=false
     volumes:
       - blog-data:/app/data

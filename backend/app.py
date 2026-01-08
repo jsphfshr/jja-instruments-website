@@ -21,7 +21,7 @@ CORS(app, supports_credentials=True)
 # Configuration
 DATABASE = os.environ.get('DATABASE_PATH', '/app/data/blog.db')
 JWT_SECRET = os.environ.get('JWT_SECRET', secrets.token_hex(32))
-JWT_EXPIRY_HOURS = int(os.environ.get('JWT_EXPIRY_HOURS', 24))
+JWT_EXPIRY_HOURS = int(os.environ.get('JWT_EXPIRY_HOURS', 720))  # 30 days default
 ADMIN_KEY = os.environ.get('ADMIN_KEY', 'change-this-in-production')
 
 def get_db():
@@ -341,6 +341,21 @@ def login():
 def verify_auth():
     return jsonify({
         'valid': True,
+        'user': {
+            'id': g.current_user.get('user_id'),
+            'username': g.current_user.get('username'),
+            'role': g.current_user.get('role')
+        }
+    })
+
+@app.route('/api/auth/refresh', methods=['POST'])
+@require_auth
+def refresh_token():
+    # Generate a new token with fresh expiry
+    new_token = create_token(g.current_user['user_id'], g.current_user['username'], g.current_user['role'])
+
+    return jsonify({
+        'token': new_token,
         'user': {
             'id': g.current_user.get('user_id'),
             'username': g.current_user.get('username'),
