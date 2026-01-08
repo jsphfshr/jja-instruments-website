@@ -37,5 +37,5 @@ ENV PORT=8080
 # Expose port (Railway uses PORT env variable)
 EXPOSE ${PORT}
 
-# Set BLOG_API_BACKEND based on BLOG_API_URL, then substitute and start nginx
-CMD ["/bin/sh", "-c", "export BLOG_API_BACKEND=${BLOG_API_URL:-http://blog-api:5000} && envsubst '${BLOG_API_BACKEND} ${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+# Use envsubst to substitute environment variables in nginx config at runtime
+CMD ["/bin/sh", "-c", "envsubst '${BLOG_API_URL} ${PORT}' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
