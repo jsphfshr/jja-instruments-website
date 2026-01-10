@@ -12,7 +12,7 @@
           fill="none" stroke="#0d4c85" stroke-width="4" stroke-linecap="round" transform="translate(4,4)"/>
     <circle cx="40" cy="40" r="3" fill="#0d4c85"/>
   </g>
-  <text x="200" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="700" fill="#fff">JJ&amp;A Instruments</text>
+  <text x="200" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="700" fill="#fff">JJ&amp;A Ultrasound Instruments</text>
   <text x="100" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="32" fill="#fff" opacity="0.9">Precision Ultrasound Equipment</text>
   <text x="100" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#fff" opacity="0.7">Doppler Phantoms • HIFU RF Generators • Calibration Services</text>
   <g transform="translate(100, 480)">

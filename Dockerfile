@@ -1,11 +1,11 @@
-# JJ&A Instruments Website Docker Image
+# JJ&A Ultrasound Instruments Website Docker Image
 # Lightweight nginx server for static content
 
 FROM nginx:alpine
 
 # Add labels for container identification
-LABEL maintainer="JJ&A Instruments"
-LABEL description="JJ&A Instruments Website - Precision Ultrasound Equipment"
+LABEL maintainer="JJ&A Ultrasound Instruments"
+LABEL description="JJ&A Ultrasound Instruments Website - Precision Ultrasound Equipment"
 LABEL version="1.0"
 
 # Remove default nginx static content
