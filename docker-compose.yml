@@ -11,6 +11,8 @@ services:
       - "8080:8080"
     expose:
       - "8080"
+    environment:
+      - BLOG_API_URL=http://blog-api:5000
     depends_on:
       blog-api:
         condition: service_healthy
