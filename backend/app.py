@@ -14,8 +14,10 @@ import html
 import jwt
 import bcrypt
 import secrets
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 app.url_map.strict_slashes = False
 CORS(app, supports_credentials=True)
 
