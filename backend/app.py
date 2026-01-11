@@ -16,6 +16,7 @@ import bcrypt
 import secrets
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 CORS(app, supports_credentials=True)
 
 # Configuration
