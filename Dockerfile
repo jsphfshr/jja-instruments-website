@@ -24,11 +24,13 @@ COPY script.js /usr/share/nginx/html/
 COPY robots.txt /usr/share/nginx/html/
 COPY sitemap.xml /usr/share/nginx/html/
 COPY BingSiteAuth.xml /usr/share/nginx/html/
+COPY llms.txt /usr/share/nginx/html/
 COPY assets/ /usr/share/nginx/html/assets/
 COPY locales/ /usr/share/nginx/html/locales/
 
-# Create a simple health check file
-RUN echo "OK" > /usr/share/nginx/html/health
+# Create a simple health check file and fix permissions
+RUN echo "OK" > /usr/share/nginx/html/health && \
+    chmod 644 /usr/share/nginx/html/*.txt /usr/share/nginx/html/*.xml
 
 # Copy and setup entrypoint script
 COPY docker-entrypoint.sh /docker-entrypoint.sh
