@@ -1833,6 +1833,25 @@ html[lang="ja"] h3 {
   z-index: 1;
 }
 
+.blog-card-image.has-image {
+  background: var(--color-bg-elevated);
+}
+
+.blog-card-image.has-image::before {
+  display: none;
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.05);
+}
+
 .blog-card-content {
   padding: var(--space-lg);
   flex: 1;

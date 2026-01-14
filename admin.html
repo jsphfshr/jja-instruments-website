@@ -380,7 +380,60 @@
         .toast.error {
             background: #dc2626;
         }
-        
+
+        .image-input-group {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .image-input-group input {
+            flex: 1;
+        }
+
+        .image-preview {
+            margin-top: var(--space-md);
+            position: relative;
+            display: inline-block;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            display: block;
+        }
+
+        .btn-remove-image {
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(220, 38, 38, 0.9);
+            color: white;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .btn-remove-image:hover {
+            background: #dc2626;
+        }
+
+        .form-hint {
+            display: block;
+            margin-top: var(--space-xs);
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
         @media (max-width: 768px) {
             .posts-table {
                 overflow-x: auto;
@@ -515,7 +568,20 @@
                         <label for="post-excerpt">Excerpt</label>
                         <input type="text" id="post-excerpt" name="excerpt" placeholder="Brief summary of the post">
                     </div>
-                    
+
+                    <div class="form-group">
+                        <label for="post-featured-image">Featured Image URL</label>
+                        <div class="image-input-group">
+                            <input type="url" id="post-featured-image" name="featured_image" placeholder="https://example.com/image.jpg">
+                            <button type="button" class="btn btn-outline btn-sm" id="preview-image-btn">Preview</button>
+                        </div>
+                        <div class="image-preview" id="image-preview" style="display: none;">
+                            <img id="preview-img" src="" alt="Preview">
+                            <button type="button" class="btn-remove-image" id="remove-image-btn">&times;</button>
+                        </div>
+                        <small class="form-hint">Enter a URL to an image (JPG, PNG, WebP). Recommended size: 800x450px</small>
+                    </div>
+
                     <div class="form-group">
                         <label for="post-tags">Tags (comma separated)</label>
                         <input type="text" id="post-tags" name="tags" placeholder="QA, Ultrasound, Compliance">
@@ -931,6 +997,28 @@
             postModal.classList.remove('show');
             postForm.reset();
             editingSlug = null;
+            hideImagePreview();
+        }
+
+        function showImagePreview(url) {
+            const preview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+
+            previewImg.src = url;
+            previewImg.onload = function() {
+                preview.style.display = 'inline-block';
+            };
+            previewImg.onerror = function() {
+                preview.style.display = 'none';
+                showToast('Failed to load image. Please check the URL.', 'error');
+            };
+        }
+
+        function hideImagePreview() {
+            const preview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+            preview.style.display = 'none';
+            previewImg.src = '';
         }
         
         async function editPost(slug) {
@@ -941,9 +1029,15 @@
                 document.getElementById('post-category').value = post.category || 'General';
                 document.getElementById('post-author').value = post.author;
                 document.getElementById('post-excerpt').value = post.excerpt || '';
+                document.getElementById('post-featured-image').value = post.featured_image || '';
                 document.getElementById('post-tags').value = post.tags || '';
                 document.getElementById('post-content').value = post.content;
                 document.getElementById('post-published').checked = post.published;
+
+                // Show image preview if there's a featured image
+                if (post.featured_image) {
+                    showImagePreview(post.featured_image);
+                }
                 
                 editingSlug = slug;
                 openModal(true);
@@ -993,6 +1087,21 @@
         
         document.getElementById('modal-close').addEventListener('click', closeModal);
         document.getElementById('modal-cancel').addEventListener('click', closeModal);
+
+        // Image preview handlers
+        document.getElementById('preview-image-btn').addEventListener('click', () => {
+            const url = document.getElementById('post-featured-image').value.trim();
+            if (url) {
+                showImagePreview(url);
+            } else {
+                showToast('Please enter an image URL first', 'error');
+            }
+        });
+
+        document.getElementById('remove-image-btn').addEventListener('click', () => {
+            document.getElementById('post-featured-image').value = '';
+            hideImagePreview();
+        });
         
         postModal.addEventListener('click', (e) => {
             if (e.target === postModal) {
@@ -1015,6 +1124,7 @@
                 category: document.getElementById('post-category').value,
                 author: document.getElementById('post-author').value || 'Admin',
                 excerpt: document.getElementById('post-excerpt').value,
+                featured_image: document.getElementById('post-featured-image').value,
                 tags: document.getElementById('post-tags').value,
                 content: document.getElementById('post-content').value,
                 published: document.getElementById('post-published').checked
