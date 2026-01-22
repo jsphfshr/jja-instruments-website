@@ -339,7 +339,7 @@
   "hifu.features.power.title": "High Power Output",
   "hifu.features.power.desc": "Up to 500W continuous wave (CW) or pulsed output. Scalable configurations from 100W to multi-kilowatt systems for different clinical applications.",
   "hifu.features.freq.title": "Wide Frequency Range",
-  "hifu.features.freq.desc": "0.5 MHz to 7 MHz covers all HIFU applications. <strong>Low Frequency (0.5-1 MHz):</strong> Deep organ tumor ablation. <strong>High Frequency (3-7 MHz):</strong> Rapidly growing aesthetic market for superficial skin tightening and dermis remodeling.",
+  "hifu.features.freq.desc": "0.2 MHz to 7 MHz covers all HIFU applications. <strong>Low Frequency (0.2-1 MHz):</strong> Deep organ tumor ablation. <strong>High Frequency (3-7 MHz):</strong> Rapidly growing aesthetic market for superficial skin tightening and dermis remodeling.",
   "hifu.features.array.title": "Multi-Channel Arrays",
   "hifu.features.array.desc": "Support for phased array transducers with up to 256 independently controlled channels. Electronic beam steering and focal point adjustment.",
   "hifu.features.response.title": "Fast Response Time",
