@@ -55,7 +55,12 @@
     <link rel="preload" href="script.js" as="script">
     <link rel="preload" href="/locales/en.json" as="fetch" crossorigin>
     
-    <link rel="stylesheet" href="styles.css">
+    <!-- Split CSS files for development -->
+    <link rel="stylesheet" href="css/01-base.css">
+    <link rel="stylesheet" href="css/02-components.css">
+    <link rel="stylesheet" href="css/03-layout.css">
+    <link rel="stylesheet" href="css/04-responsive.css">
+    <link rel="stylesheet" href="css/05-i18n.css">
     <script src="script.js" defer></script>
     
     <!-- Structured Data for SEO -->
@@ -293,14 +298,14 @@
                 <div class="hero-visual">
                     <div class="product-image-gallery">
                         <div class="main-image">
-                            <img src="assets/images/MK5-front.jpg" alt="Mark V Doppler Phantom - Front View" id="main-product-image" width="3477" height="1993">
+                            <img src="assets/images/MK5-front.jpg" alt="Mark V Doppler Phantom - Front View" id="main-product-image" width="1200" height="688">
                         </div>
                         <div class="image-thumbnails">
                             <button class="thumbnail active" onclick="changeImage('assets/images/MK5-front.jpg', this)">
-                                <img src="assets/images/MK5-front.jpg" alt="Front View" width="3477" height="1993">
+                                <img src="assets/images/MK5-front.jpg" alt="Front View" width="1200" height="688" loading="lazy">
                             </button>
                             <button class="thumbnail" onclick="changeImage('assets/images/MK5-rear.jpg', this)">
-                                <img src="assets/images/MK5-rear.jpg" alt="Rear View" width="3145" height="1945">
+                                <img src="assets/images/MK5-rear.jpg" alt="Rear View" width="1200" height="742" loading="lazy">
                             </button>
                         </div>
                     </div>

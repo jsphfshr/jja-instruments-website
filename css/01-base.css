@@ -1,0 +1,141 @@
+/* ===================================
+   JJ&A Ultrasound Instruments Website Styles
+   Light Medical Theme - Clean & Modern
+   =================================== */
+
+/* CSS Variables */
+:root {
+  /* Colors - Clean Medical Aesthetic */
+  --color-primary: #0d4c85;
+  --color-primary-dark: #083a66;
+  --color-primary-light: #1a6bb8;
+  --color-accent: #00a878;
+  --color-accent-light: #00d998;
+
+  --color-bg: #ffffff;
+  --color-bg-light: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-bg-elevated: #f1f5f9;
+
+  --color-text: #334155;
+  --color-text-muted: #64748b;
+  --color-text-dark: #0f172a;
+
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  /* Medical accent colors */
+  --color-medical-blue: #0d4c85;
+  --color-medical-teal: #0077b6;
+  --color-medical-green: #00a878;
+
+  /* Typography - with i18n font support */
+  --font-display: Avenir, "Avenir Next", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: Avenir, "Avenir Next", "Noto Sans JP", "Noto Sans SC", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows - Softer for light theme */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 40px rgba(0, 102, 204, 0.15);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+h1 em,
+h2 em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+/* Buttons */
