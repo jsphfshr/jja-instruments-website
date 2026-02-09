@@ -25,6 +25,8 @@ COPY robots.txt /usr/share/nginx/html/
 COPY sitemap.xml /usr/share/nginx/html/
 COPY BingSiteAuth.xml /usr/share/nginx/html/
 COPY llms.txt /usr/share/nginx/html/
+COPY llms-full.txt /usr/share/nginx/html/
+COPY css/ /usr/share/nginx/html/css/
 COPY assets/ /usr/share/nginx/html/assets/
 COPY locales/ /usr/share/nginx/html/locales/
 

@@ -1,4 +1,6 @@
-# JJ & A Instruments LLC
+# JJ&A Ultrasound Instruments
+
+> For comprehensive product details, specifications, and FAQ, see: https://jja-instruments.com/llms-full.txt
 
 We manufacture and service precision instruments for ultrasound,
 focused ultrasound (FUS), and related medical and industrial applications.

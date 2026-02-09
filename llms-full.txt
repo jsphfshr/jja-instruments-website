@@ -1,0 +1,241 @@
+# JJ&A Ultrasound Instruments - Complete Product & Technical Reference
+
+> JJ&A Ultrasound Instruments (jja-instruments.com) is a manufacturer of precision ultrasound equipment based in Post Falls, Idaho, USA. We serve hospitals, OEMs, research institutions, and therapeutic device developers worldwide. Founded in 1999 with 35+ years of combined ultrasound engineering experience.
+
+## Company Overview
+
+JJ&A Ultrasound Instruments designs and manufactures precision ultrasound equipment for two primary markets:
+
+1. **Diagnostic Ultrasound Quality Assurance** - Doppler phantoms and calibration services for hospitals, imaging centers, and ultrasound manufacturers
+2. **Therapeutic Ultrasound (HIFU)** - Complete RF power driving systems for focused ultrasound transducers used in tumor ablation, neurological therapy, aesthetics, and research
+
+### Certifications & Standards
+- ISO 13485 certified manufacturing (Medical Device Quality Management System)
+- CE Marked products (European conformity)
+- FDA Registered facility
+- NIST-traceable calibration standards
+
+### Contact Information
+- Website: https://jja-instruments.com
+- Email: sales@jja-instruments.com
+- Phone: +1-425-788-0779
+- Location: Post Falls, Idaho, USA
+- X/Twitter: https://x.com/jjainstruments
+- LinkedIn: https://linkedin.com/company/jja-instruments
+
+---
+
+## Product 1: Mark V Doppler String Phantom
+
+### What It Is
+The Mark V Doppler String Phantom is the industry standard for Doppler ultrasound velocity calibration and quality assurance testing. It uses a precisely controlled moving filament (string) to simulate blood flow, allowing technicians to verify that their ultrasound systems measure velocity accurately.
+
+### Why It Matters
+- Uncalibrated ultrasound systems can produce velocity measurement errors of 10-20%
+- Inaccurate velocity measurements can lead to misdiagnosis of carotid stenosis, cardiac valve disease, and other conditions
+- Accreditation bodies (ACR, IAC, ICAVL, Joint Commission) require documented QA testing
+- Regular calibration ensures patient safety and diagnostic accuracy
+
+### Key Specifications
+- **Velocity Range:** 10-200 cm/s (covers all clinical blood flow velocities)
+- **Accuracy:** +/-1% of reading, NIST-traceable
+- **Resolution:** 0.1 cm/s
+- **Stability:** +/-0.5% over 8 hours
+- **Probe Compatibility:** 2-15 MHz (all major ultrasound manufacturers)
+- **Doppler Angles:** 30, 45, 60 degree guides for angle correction verification
+- **Acoustic Window:** TPX membrane, 60x120mm
+- **String Target Depth:** 2-8 cm adjustable
+- **String Material:** 0.1mm nylon monofilament
+- **Dimensions:** 45 x 25 x 18 cm
+- **Weight:** 5.2 kg (11.5 lbs)
+- **Power:** 100-240V AC, 50/60Hz universal
+- **Data Export:** USB with PDF and CSV output
+- **Certifications:** CE marked, IEC 62359 compliant
+- **Warranty:** 2 years comprehensive
+
+### How It Works (String Phantom vs Flow Phantom)
+Unlike traditional flow phantoms that use blood-mimicking fluid (which requires temperature control, degassing, and regular fluid replacement), the Mark V string phantom uses a mechanically driven filament at crystal-controlled velocities. This provides:
+
+- **100% Repeatability:** Crystal-controlled motor drive eliminates velocity drift
+- **Zero Fluid Maintenance:** No blood-mimicking fluid to mix, degas, or replace
+- **5-Minute Setup:** No temperature stabilization required
+- **Direct NIST Traceability:** Mechanical velocity is directly traceable
+
+### Compatible Ultrasound Systems
+Works with all diagnostic ultrasound systems from: GE Healthcare, Philips, Siemens Healthineers, Canon Medical (Toshiba), Samsung Medison, Fujifilm/Hitachi, Mindray, and all other manufacturers with Doppler capability.
+
+### Clinical Applications
+1. **Vascular Laboratory QA** - Carotid stenosis grading (NASCET/ECST criteria), peripheral arterial/venous assessment, DVT diagnosis
+2. **Echocardiography** - Transmitral/transaortic flow velocities, E/A ratio, valve gradient measurements
+3. **Obstetric Doppler** - Umbilical artery, middle cerebral artery, fetal well-being assessment
+4. **Transcranial Doppler** - Stroke risk, vasospasm monitoring, brain death protocols
+5. **Equipment Acceptance Testing** - New system installation verification
+6. **OEM Production Testing** - End-of-line QA for ultrasound manufacturers
+
+### Compliance Standards Supported
+- ACR (American College of Radiology) - Annual Doppler QA
+- IAC (Intersocietal Accreditation Commission) - Echo & Vascular
+- ICAVL (Intersocietal Commission for Accreditation of Vascular Laboratories)
+- The Joint Commission - Equipment management
+- FDA 21 CFR Part 820 - Quality System Regulation
+- IEC 62359 - Ultrasound field characterization
+- AIUM (American Institute of Ultrasound in Medicine)
+- ISO 13485 - Medical device QMS
+
+### Product Page
+https://jja-instruments.com/doppler-phantom.html
+
+---
+
+## Product 2: HIFU RF Power System
+
+### What It Is
+A complete driving system for High-Intensity Focused Ultrasound (HIFU) transducers. Unlike standalone RF amplifiers, this is an integrated system containing: frequency generator, timing and gating circuits, RF power amplifier, comprehensive safety systems, and full digital control - all accessible through simple ASCII commands via a single USB port.
+
+### The Value Proposition
+"Just add your transducer." Customers developing HIFU devices no longer need to design and integrate separate frequency generators, timing circuits, amplifiers, and safety systems. Everything is in one box, controlled through one USB cable with plain-text commands.
+
+### Key Specifications
+- **Frequency Range:** 0.5-7.0 MHz (DDS synthesis)
+- **Frequency Stability:** +/-10 ppm
+- **Output Power (CW):** 100W, 250W, or 500W models
+- **Output Power (Pulsed):** Up to 1000W peak
+- **Power Resolution:** 0.1W digital control
+- **Rise/Fall Time:** <10 microseconds
+- **Duty Cycle:** 0-100% (CW or pulsed)
+- **Output Impedance:** 50 ohms nominal
+- **VSWR Protection:** Auto-shutdown at 3:1
+- **Control Interface:** USB with ASCII text commands
+- **Cooling:** Forced air / Water cooling options
+- **MRI Compatibility:** Optional shielded version (validated at 1.5T and 3T)
+- **Multi-Channel:** Up to 256 independently controlled channels for phased arrays
+- **Warranty:** 2 years standard, up to 5 years extended
+
+### Integrated Components
+1. **Frequency Generator** - Precision DDS synthesis, 0.2-7 MHz
+2. **Timing & Gating Circuits** - Programmable pulse control, <10 microsecond response
+3. **RF Power Amplifier** - Up to 500W continuous, impedance matched
+4. **Safety Systems** - VSWR protection, thermal shutdown, arc detection, hardware interlocks
+5. **USB Control Interface** - Simple ASCII commands, works with any programming language
+
+### HIFU Applications
+1. **Oncology & Tumor Ablation** - Non-invasive treatment of prostate, liver, breast, kidney, bone tumors. 41% of global HIFU market.
+2. **Neurology** - MRI-guided focused ultrasound for essential tremor, Parkinson's tremor, neuropathic pain. Transcranial treatment without craniotomy.
+3. **Aesthetic & Cosmetic** - Non-invasive skin tightening, wrinkle reduction, body contouring. Fastest-growing HIFU segment. Uses higher frequencies (3-7 MHz) targeting SMAS layer.
+4. **Drug Delivery & Sonoporation** - Blood-brain barrier opening, enhanced drug delivery, sonodynamic therapy research.
+5. **OEM System Integration** - Compact form factor for commercial HIFU systems. CE marking documentation support.
+6. **Research & Development** - Academic and industrial R&D for new HIFU protocols, transducer characterization, bioeffects studies.
+
+### Frequency Selection Guide
+- **0.2-1 MHz:** Deep organ ablation (liver, kidney, pancreas) - penetration up to 15 cm
+- **1-3 MHz:** Neurological HIFU, moderate-depth therapeutic applications
+- **3-7 MHz:** Aesthetic applications (skin tightening, body contouring) - precise shallow penetration
+
+### Software & APIs
+- USB ASCII command protocol (works with any terminal or language)
+- LabVIEW VIs included
+- Python libraries included
+- C/C++ SDK included
+
+### Safety Features Detail
+- **VSWR Protection:** Monitors reflected power in real-time; auto-reduces or shuts down if transducer impedance shifts during ablation
+- **Over-Temperature:** Internal temperature monitoring with automatic shutdown
+- **Arc Detection:** Instant power cut if arcing detected in RF path
+- **Hardware Interlocks:** External safety switches and emergency stop support
+- **Software Limits:** Application-specific power and duration limits
+
+### Product Page
+https://jja-instruments.com/hifu-generator.html
+
+---
+
+## Services
+
+### Calibration Services
+- **On-Site Calibration:** Technicians visit your facility with calibrated reference equipment
+- **Depot Calibration:** Ship phantom to our ISO 17025-compliant lab (5-7 business day turnaround)
+- **Annual Recertification:** Maintain NIST traceability for ongoing compliance
+
+### Accreditation Support
+- Complete documentation packages for ACR, IAC, ICAVL, Joint Commission audits
+- QA protocol templates and testing procedure documentation
+- Compliance consulting for regulatory submissions
+
+### QA Training
+- On-site and virtual training for sonographers and QA staff
+- Phantom operation, testing protocols, and documentation procedures
+- Certification programs available
+
+### Custom Engineering
+- OEM integration support
+- Custom RF amplifier configurations
+- Private labeling and volume pricing
+- Design-in support for product development
+
+### Global Support
+- Worldwide shipping
+- Local service partners in North America, Europe, Asia-Pacific
+- Phone and email technical support
+- Remote diagnostics via network connection
+- Loaner units available during repairs
+
+---
+
+## Frequently Asked Questions
+
+### Doppler Phantom FAQ
+
+**Q: How often should Doppler ultrasound equipment be calibrated?**
+A: The ACR and IAC recommend Doppler velocity verification at least annually. Many accredited vascular laboratories perform quarterly calibration checks. Additional testing is recommended after equipment service, software updates, or transducer replacement.
+
+**Q: What is the difference between a string phantom and a flow phantom?**
+A: String phantoms use a moving filament at precisely controlled velocities, providing consistent, reproducible results with minimal maintenance. Flow phantoms use blood-mimicking fluid and better simulate certain acoustic properties but require temperature control and regular fluid replacement. For Doppler velocity calibration, string phantoms offer superior accuracy and practicality.
+
+**Q: Is the Mark V compatible with my ultrasound system?**
+A: Yes. Compatible with all diagnostic ultrasound systems with Doppler capability, including GE, Philips, Siemens, Canon (Toshiba), Samsung, Fujifilm, Mindray, and others. 2-15 MHz probe compatibility covers virtually all clinical transducers.
+
+**Q: What blood flow velocities can I test?**
+A: 1-400 mm/s, spanning venous flow (10-30 cm/s), normal arterial flow (30-100 cm/s), and peak systolic velocities (up to 200 cm/s and beyond).
+
+**Q: What is tissue-mimicking material?**
+A: TMM replicates acoustic properties of human tissue (speed of sound ~1540 m/s, attenuation, backscatter). High-quality TMMs remain stable for years and provide consistent test conditions.
+
+### HIFU Generator FAQ
+
+**Q: What is HIFU and how does it work?**
+A: High-Intensity Focused Ultrasound uses focused acoustic energy to heat targeted tissue to 60-85C, causing coagulative necrosis. An RF power generator drives piezoelectric transducers that focus ultrasound waves to a precise point - like sunlight through a magnifying glass - while sparing surrounding structures.
+
+**Q: What components are needed for a complete HIFU system?**
+A: A frequency generator, timing circuits, RF power amplifier, impedance matching, safety systems, control interface, and transducer. The JJ&A HIFU RF Power System integrates everything except the transducer.
+
+**Q: Is the generator MRI-compatible?**
+A: Yes, we offer MRI-compatible versions with EMI shielding for MRgFUS applications, validated at 1.5T and 3T field strengths.
+
+**Q: What safety features are included?**
+A: VSWR protection, over-temperature shutdown, arc detection, hardware interlocks, and software-defined power/duration limits.
+
+---
+
+## Industry Context
+
+### Ultrasound QA Market
+Medical ultrasound is a $9+ billion global market. Every ultrasound system requires regular quality assurance testing for patient safety and accreditation compliance. The increasing number of accredited imaging centers drives demand for QA equipment.
+
+### HIFU Market
+The global HIFU market is valued at approximately $800 million and growing at 10%+ CAGR. Key drivers include:
+- Growing adoption for non-invasive tumor treatment
+- FDA clearance of transcranial focused ultrasound for essential tremor
+- Rapidly expanding aesthetic/cosmetic applications
+- Increasing research in drug delivery and neuromodulation
+
+### Key Industry Terms
+- **Doppler ultrasound:** Technique measuring blood flow velocity using frequency shift of reflected ultrasound
+- **HIFU:** High-Intensity Focused Ultrasound - therapeutic technique using focused acoustic energy
+- **MRgFUS:** MRI-guided Focused Ultrasound Surgery
+- **VSWR:** Voltage Standing Wave Ratio - measure of impedance matching
+- **TMM:** Tissue-Mimicking Material
+- **DDS:** Direct Digital Synthesis - precision frequency generation technique
+- **NIST:** National Institute of Standards and Technology
+- **ACR:** American College of Radiology
+- **IAC:** Intersocietal Accreditation Commission
+- **ICAVL:** Intersocietal Commission for Accreditation of Vascular Laboratories

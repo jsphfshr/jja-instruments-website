@@ -33,14 +33,16 @@
     <meta property="og:url" content="https://jja-instruments.com/">
     <meta property="og:title" content="JJ&A Ultrasound Instruments | Precision Ultrasound Equipment">
     <meta property="og:description" content="Industry-leading manufacturer of doppler phantoms, HIFU RF power generators, and ultrasound calibration equipment.">
-    <meta property="og:image" content="https://jja-instruments.com/assets/images/MK5-front.jpg">
+    <meta property="og:image" content="https://jja-instruments.com/assets/images/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://jja-instruments.com/">
     <meta property="twitter:title" content="JJ&A Ultrasound Instruments | Precision Ultrasound Equipment">
     <meta property="twitter:description" content="Industry-leading manufacturer of doppler phantoms, HIFU RF power generators, and ultrasound calibration equipment.">
-    <meta property="twitter:image" content="https://jja-instruments.com/assets/images/MK5-front.jpg">
+    <meta property="twitter:image" content="https://jja-instruments.com/assets/images/og-image.svg">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://jja-instruments.com/">
@@ -53,8 +55,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="css/01-base.css" as="style">
+    <link rel="preload" href="css/02-components.css" as="style">
+    <link rel="preload" href="css/03-layout.css" as="style">
+    <link rel="preload" href="script.js?v=1768365403" as="script">
     <link rel="preload" href="/locales/en.json" as="fetch" crossorigin>
     
     <!-- Minified CSS for production -->
@@ -70,7 +74,7 @@
         "description": "Manufacturer of precision ultrasound equipment including doppler phantoms and HIFU RF power generators for medical applications, research, and OEM integration.",
         "url": "https://jja-instruments.com",
         "logo": "https://jja-instruments.com/assets/images/logo.png",
-        "sameAs": [],
+        "sameAs": ["https://x.com/jjainstruments", "https://linkedin.com/company/jja-instruments"],
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+1-425-788-0779",
@@ -78,6 +82,52 @@
         },
         "areaServed": "Worldwide",
         "knowsAbout": ["Ultrasound Quality Assurance", "Doppler Calibration", "HIFU Technology", "Focused Ultrasound", "RF Power Amplifiers", "Medical Device Manufacturing"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "JJ&A Ultrasound Instruments",
+        "description": "Manufacturer of precision ultrasound equipment including doppler phantoms and HIFU RF power generators.",
+        "url": "https://jja-instruments.com",
+        "telephone": "+1-425-788-0779",
+        "email": "sales@jja-instruments.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Post Falls",
+            "addressRegion": "ID",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 47.7182,
+            "longitude": -116.9516
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "17:00"
+        },
+        "priceRange": "$$$$",
+        "sameAs": [
+            "https://x.com/jjainstruments",
+            "https://linkedin.com/company/jja-instruments"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "JJ&A Ultrasound Instruments",
+        "url": "https://jja-instruments.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://jja-instruments.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
     }
     </script>
 </head>
@@ -166,7 +216,7 @@
                         </div>
                         <div class="trust-item">
                             <span class="trust-number">🌎</span>
-                            <span class="trust-label" data-i18n="home.hero.countries">Woldwide distribution</span>
+                            <span class="trust-label" data-i18n="home.hero.countries">Worldwide Distribution</span>
                         </div>
                         <div class="trust-item">
                             <span class="trust-number">ISO</span>
@@ -708,7 +758,7 @@
                 </nav>
             </div>
             <div class="footer-bottom">
-                <p data-i18n="footer.copyright">&copy; 2025 JJ&A Ultrasound Instruments. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 JJ&A Ultrasound Instruments. All rights reserved.</p>
                 <div class="footer-legal">
                     <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
                     <a href="#" data-i18n="footer.terms">Terms of Service</a>
