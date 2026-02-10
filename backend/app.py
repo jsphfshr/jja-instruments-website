@@ -4,9 +4,10 @@ Flask backend for blog posts, comments, and admin authentication
 """
 
 import os
+import uuid
 import sqlite3
 from datetime import datetime, timedelta
-from flask import Flask, request, jsonify, g
+from flask import Flask, request, jsonify, g, send_from_directory
 from flask_cors import CORS
 from functools import wraps
 import re
@@ -15,6 +16,7 @@ import jwt
 import bcrypt
 import secrets
 from werkzeug.middleware.proxy_fix import ProxyFix
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
@@ -23,6 +25,9 @@ CORS(app, supports_credentials=True)
 
 # Configuration
 DATABASE = os.environ.get('DATABASE_PATH', '/app/data/blog.db')
+UPLOAD_DIR = os.path.join(os.path.dirname(DATABASE), 'uploads')
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'webp', 'gif'}
+MAX_UPLOAD_SIZE = 5 * 1024 * 1024  # 5MB
 JWT_SECRET = os.environ.get('JWT_SECRET', secrets.token_hex(32))
 JWT_EXPIRY_HOURS = int(os.environ.get('JWT_EXPIRY_HOURS', 720))  # 30 days default
 ADMIN_KEY = os.environ.get('ADMIN_KEY', 'change-this-in-production')
@@ -42,6 +47,7 @@ def close_connection(exception):
 
 def init_db():
     os.makedirs(os.path.dirname(DATABASE), exist_ok=True)
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
     
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
@@ -719,6 +725,40 @@ def approve_comment(comment_id):
         return jsonify({'message': 'Comment approved'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/api/uploads', methods=['POST'])
+@require_admin
+def upload_image():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file provided'}), 400
+
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No file selected'}), 400
+
+    ext = file.filename.rsplit('.', 1)[-1].lower() if '.' in file.filename else ''
+    if ext not in ALLOWED_EXTENSIONS:
+        return jsonify({'error': f'File type not allowed. Allowed: {", ".join(ALLOWED_EXTENSIONS)}'}), 400
+
+    file.seek(0, 2)
+    size = file.tell()
+    file.seek(0)
+    if size > MAX_UPLOAD_SIZE:
+        return jsonify({'error': f'File too large. Maximum size: {MAX_UPLOAD_SIZE // (1024*1024)}MB'}), 400
+
+    filename = f'{uuid.uuid4().hex}.{ext}'
+    file.save(os.path.join(UPLOAD_DIR, filename))
+
+    return jsonify({'url': f'/api/uploads/{filename}'}), 201
+
+
+@app.route('/api/uploads/<filename>')
+def serve_upload(filename):
+    safe_name = secure_filename(filename)
+    if safe_name != filename:
+        return jsonify({'error': 'Invalid filename'}), 400
+    return send_from_directory(UPLOAD_DIR, safe_name)
+
 
 with app.app_context():
     init_db()

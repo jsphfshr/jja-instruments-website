@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 
 # Create data directory for SQLite database
-RUN mkdir -p /app/data
+RUN mkdir -p /app/data/uploads
 
 # Environment variables
 ENV DATABASE_PATH=/app/data/blog.db

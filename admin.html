@@ -385,13 +385,62 @@
             background: #dc2626;
         }
 
-        .image-input-group {
-            display: flex;
-            gap: var(--space-sm);
+        .upload-zone {
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            text-align: center;
+            cursor: pointer;
+            transition: border-color var(--transition-fast), background var(--transition-fast);
         }
 
-        .image-input-group input {
-            flex: 1;
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: var(--color-primary);
+            background: rgba(13, 76, 133, 0.03);
+        }
+
+        .upload-zone p {
+            margin: 0;
+            color: var(--color-text-muted);
+        }
+
+        .upload-zone .upload-icon {
+            margin-bottom: var(--space-sm);
+        }
+
+        .upload-zone .btn {
+            margin-top: var(--space-md);
+        }
+
+        .upload-progress {
+            margin-top: var(--space-md);
+            display: none;
+        }
+
+        .upload-progress.show {
+            display: block;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--color-border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--color-primary);
+            border-radius: 3px;
+            transition: width 0.3s;
+            width: 0%;
+        }
+
+        .upload-status {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-top: var(--space-xs);
         }
 
         .image-preview {
@@ -574,16 +623,29 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="post-featured-image">Featured Image URL</label>
-                        <div class="image-input-group">
-                            <input type="url" id="post-featured-image" name="featured_image" placeholder="https://example.com/image.jpg">
-                            <button type="button" class="btn btn-outline btn-sm" id="preview-image-btn">Preview</button>
+                        <label>Featured Image</label>
+                        <input type="hidden" id="post-featured-image" name="featured_image">
+                        <input type="file" id="image-file-input" accept=".jpg,.jpeg,.png,.webp,.gif" style="display:none">
+                        <div class="upload-zone" id="upload-zone">
+                            <div class="upload-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                            </div>
+                            <p>Drag &amp; drop an image here, or</p>
+                            <button type="button" class="btn btn-outline btn-sm" id="choose-file-btn">Choose File</button>
+                        </div>
+                        <div class="upload-progress" id="upload-progress">
+                            <div class="progress-bar"><div class="progress-bar-fill" id="progress-bar-fill"></div></div>
+                            <div class="upload-status" id="upload-status">Uploading...</div>
                         </div>
                         <div class="image-preview" id="image-preview" style="display: none;">
                             <img id="preview-img" src="" alt="Preview">
                             <button type="button" class="btn-remove-image" id="remove-image-btn">&times;</button>
                         </div>
-                        <small class="form-hint">Enter a URL to an image (JPG, PNG, WebP). Recommended size: 800x450px</small>
+                        <small class="form-hint">JPG, PNG, WebP, or GIF. Max 5MB. Recommended size: 800x450px</small>
                     </div>
 
                     <div class="form-group">
@@ -876,6 +938,39 @@
                 }
 
                 return true;
+            },
+
+            async uploadImage(file, onProgress) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                return new Promise((resolve, reject) => {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', `${API_BASE}/api/uploads`);
+
+                    const token = Auth.getToken();
+                    if (token) {
+                        xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+                    }
+
+                    xhr.upload.addEventListener('progress', (e) => {
+                        if (e.lengthComputable && onProgress) {
+                            onProgress(Math.round((e.loaded / e.total) * 100));
+                        }
+                    });
+
+                    xhr.addEventListener('load', () => {
+                        const data = JSON.parse(xhr.responseText);
+                        if (xhr.status === 201) {
+                            resolve(data.url);
+                        } else {
+                            reject(new Error(data.error || 'Upload failed'));
+                        }
+                    });
+
+                    xhr.addEventListener('error', () => reject(new Error('Upload failed')));
+                    xhr.send(formData);
+                });
             }
         };
         
@@ -1002,6 +1097,9 @@
             postForm.reset();
             editingSlug = null;
             hideImagePreview();
+            document.getElementById('upload-zone').style.display = '';
+            document.getElementById('upload-progress').classList.remove('show');
+            document.getElementById('image-file-input').value = '';
         }
 
         function showImagePreview(url) {
@@ -1040,7 +1138,9 @@
 
                 // Show image preview if there's a featured image
                 if (post.featured_image) {
-                    showImagePreview(post.featured_image);
+                    const imgUrl = post.featured_image.startsWith('/api/') ? API_BASE + post.featured_image : post.featured_image;
+                    showImagePreview(imgUrl);
+                    document.getElementById('upload-zone').style.display = 'none';
                 }
                 
                 editingSlug = slug;
@@ -1092,19 +1192,77 @@
         document.getElementById('modal-close').addEventListener('click', closeModal);
         document.getElementById('modal-cancel').addEventListener('click', closeModal);
 
-        // Image preview handlers
-        document.getElementById('preview-image-btn').addEventListener('click', () => {
-            const url = document.getElementById('post-featured-image').value.trim();
-            if (url) {
-                showImagePreview(url);
-            } else {
-                showToast('Please enter an image URL first', 'error');
-            }
+        // Image upload handlers
+        const uploadZone = document.getElementById('upload-zone');
+        const fileInput = document.getElementById('image-file-input');
+        const uploadProgress = document.getElementById('upload-progress');
+        const progressBarFill = document.getElementById('progress-bar-fill');
+        const uploadStatus = document.getElementById('upload-status');
+
+        document.getElementById('choose-file-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fileInput.click();
         });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files[0]) handleImageUpload(fileInput.files[0]);
+        });
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) handleImageUpload(file);
+        });
+
+        async function handleImageUpload(file) {
+            const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+            if (!allowed.includes(file.type)) {
+                showToast('File type not allowed. Use JPG, PNG, WebP, or GIF.', 'error');
+                return;
+            }
+            if (file.size > 5 * 1024 * 1024) {
+                showToast('File too large. Maximum 5MB.', 'error');
+                return;
+            }
+
+            uploadZone.style.display = 'none';
+            uploadProgress.classList.add('show');
+            progressBarFill.style.width = '0%';
+            uploadStatus.textContent = 'Uploading...';
+
+            try {
+                const url = await Posts.uploadImage(file, (pct) => {
+                    progressBarFill.style.width = pct + '%';
+                    uploadStatus.textContent = `Uploading... ${pct}%`;
+                });
+
+                document.getElementById('post-featured-image').value = url;
+                const fullUrl = url.startsWith('/') ? API_BASE + url : url;
+                showImagePreview(fullUrl);
+                uploadProgress.classList.remove('show');
+                showToast('Image uploaded successfully');
+            } catch (e) {
+                uploadProgress.classList.remove('show');
+                uploadZone.style.display = '';
+                showToast(e.message, 'error');
+            }
+        }
 
         document.getElementById('remove-image-btn').addEventListener('click', () => {
             document.getElementById('post-featured-image').value = '';
             hideImagePreview();
+            uploadZone.style.display = '';
+            fileInput.value = '';
         });
         
         postModal.addEventListener('click', (e) => {
